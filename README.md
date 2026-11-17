@@ -85,6 +85,15 @@ El script instala en `~/.local/share/axiom-engine`, añade el lanzador al menú 
 
 Requisitos habituales en Ubuntu/Fedora: `libgtk-3`, `libnss3`, `libasound2`, `libgbm1` y `libxshmfence1`. Si usas un entorno mínimo, revisa las dependencias de Electron.
 
+Si Electron muestra un error sobre `chrome-sandbox`, puedes ejecutar `./axiom-engine --no-sandbox` (menos aislado) o ajustar el permiso del sandbox:
+
+```bash
+sudo chown root:root ~/.local/share/axiom-engine/chrome-sandbox
+sudo chmod 4755 ~/.local/share/axiom-engine/chrome-sandbox
+```
+
+En Linux, si el llavero del sistema no está disponible, la clave API se guarda localmente codificada en lugar de cifrada; Axiom lo indica en los ajustes.
+
 ### Opción C — Desarrollo
 
 Requisitos: **Node.js 20 o superior** (probado con Node 24). El desarrollo funciona en Windows y Linux.
