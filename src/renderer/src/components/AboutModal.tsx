@@ -1,4 +1,4 @@
-import { Cpu, Github, Heart, Sparkles } from 'lucide-react'
+import { Cpu, Download, Github, Heart, Sparkles } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useEditorStore } from '../store/editor'
 import { Modal } from './ui'
@@ -49,8 +49,8 @@ export function AboutModal() {
           </div>
           <div>
             <Github size={15} />
-            <strong>Próximamente</strong>
-            <span>Exportación web, modo 3D y publicación en GitHub tras tu aprobación.</span>
+            <strong>Comunidad</strong>
+            <span>Repositorio público, releases y proyectos de ejemplo en GitHub.</span>
           </div>
         </div>
         <div className="about-tech">
@@ -58,6 +58,22 @@ export function AboutModal() {
           <span>Chromium {versions?.chrome ?? '—'}</span>
           <span>Node {versions?.node ?? '—'}</span>
           <span>React + TypeScript</span>
+        </div>
+        <div className="about-links">
+          <button
+            type="button"
+            className="secondary-btn"
+            onClick={() => window.axiom?.app.openExternal('https://github.com/otaplus/axiom-engine')}
+          >
+            <Github size={14} /> Ver en GitHub
+          </button>
+          <button
+            type="button"
+            className="secondary-btn"
+            onClick={() => window.axiom?.app.openExternal('https://github.com/otaplus/axiom-engine/releases/tag/v0.1.0')}
+          >
+            <Download size={14} /> Descargar release
+          </button>
         </div>
         <div className="about-footer">
           <span>

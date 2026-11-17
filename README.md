@@ -15,6 +15,13 @@
   <img alt="Licencia" src="https://img.shields.io/badge/licencia-MIT-34d399" />
 </p>
 
+<p align="center">
+  <a href="https://github.com/otaplus/axiom-engine">Repositorio</a> ·
+  <a href="https://github.com/otaplus/axiom-engine/releases/tag/v0.1.0">Descargar v0.1.0</a> ·
+  <a href="docs/SCRIPTING.md">API de scripting</a> ·
+  <a href="docs/AI_AGENT.md">Protocolo del agente</a>
+</p>
+
 ![Editor de Axiom Engine](docs/screenshots/editor.png)
 
 > **Axiom Engine** está inspirado en la filosofía de editores como Godot: árbol de escena, inspector, viewport y scripts. Su diferencia es que el **Copiloto IA** vive dentro del editor y conoce el proyecto: puede crear niveles completos, añadir mecánicas, escribir scripts, generar assets y corregir lo que ya existe.
@@ -53,12 +60,12 @@
 
 ### Opción A — Aplicación empaquetada (Windows)
 
-1. Descomprime `release/Axiom-Engine-0.1.0-x64.zip` (o descarga el ZIP de la release cuando esté publicada).
+1. Descarga [Axiom-Engine-0.1.0-x64.zip](https://github.com/otaplus/axiom-engine/releases/download/v0.1.0/Axiom-Engine-0.1.0-x64.zip) o usa el ZIP local `release/Axiom-Engine-0.1.0-x64.zip`. Descomprímelo.
 2. Ejecuta `Axiom Engine.exe`.
 3. Abre **Copiloto → Conectar** y pega una clave API de [DeepSeek](https://platform.deepseek.com/api_keys).
 4. Escribe lo que quieres crear y pulsa **Enter**.
 
-> La aplicación no está firmada digitalmente en esta etapa alfa. Windows SmartScreen puede pedir confirmación la primera vez.
+> La aplicación no está firmada digitalmente en esta etapa alfa. Windows SmartScreen puede pedir confirmación la primera vez. El checksum SHA-256 se publica junto al ZIP en la release.
 
 ### Opción B — Desarrollo
 
@@ -212,7 +219,7 @@ Axiom 0.1.0 es una **alfa funcional**. Es un motor real y jugable, pero no prete
 - Modo 3D básico.
 - Editor de animaciones y tilemaps.
 - Depurador visual, breakpoints y perfilador.
-- Publicación en GitHub tras la aprobación del proyecto.
+- Publicación de nuevas versiones y releases en GitHub.
 
 ### Limitaciones conocidas
 

@@ -4586,6 +4586,12 @@ textarea {
   color: var(--faint);
 }
 
+.about-links {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
 .about-footer {
   display: flex;
   justify-content: space-between;
