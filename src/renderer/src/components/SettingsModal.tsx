@@ -9,41 +9,161 @@ const PROVIDERS = [
     id: 'deepseek',
     name: 'DeepSeek',
     tag: 'Recomendado',
+    logo: 'DS',
     description: 'Rápido y económico. Excelente escribiendo lógica de juego y scripts.',
     baseUrl: 'https://api.deepseek.com/v1',
-    model: 'deepseek-chat'
+    model: 'deepseek-chat',
+    keyUrl: 'https://platform.deepseek.com/api_keys'
   },
   {
     id: 'openai',
     name: 'OpenAI',
-    tag: 'Compatible',
-    description: 'GPT-4o y modelos compatibles con la API de Chat Completions.',
+    tag: 'Popular',
+    logo: 'OA',
+    description: 'GPT-4o y modelos compatibles con Chat Completions.',
     baseUrl: 'https://api.openai.com/v1',
-    model: 'gpt-4o-mini'
+    model: 'gpt-4o-mini',
+    keyUrl: 'https://platform.openai.com/api-keys'
+  },
+  {
+    id: 'anthropic',
+    name: 'Anthropic Claude',
+    tag: 'Claude',
+    logo: 'AN',
+    description: 'Claude Sonnet y Opus mediante la API nativa de Anthropic.',
+    baseUrl: 'https://api.anthropic.com/v1',
+    model: 'claude-sonnet-4-5',
+    keyUrl: 'https://console.anthropic.com/settings/keys'
+  },
+  {
+    id: 'google',
+    name: 'Google Gemini',
+    tag: 'Gemini',
+    logo: 'GE',
+    description: 'Gemini 2.5 a través del endpoint compatible con OpenAI.',
+    baseUrl: 'https://generativelanguage.googleapis.com/v1beta/openai',
+    model: 'gemini-2.5-flash',
+    keyUrl: 'https://aistudio.google.com/app/apikey'
+  },
+  {
+    id: 'xai',
+    name: 'xAI Grok',
+    tag: 'Grok',
+    logo: 'XA',
+    description: 'Modelos Grok para razonamiento, código y conversación.',
+    baseUrl: 'https://api.x.ai/v1',
+    model: 'grok-3',
+    keyUrl: 'https://console.x.ai'
   },
   {
     id: 'openrouter',
     name: 'OpenRouter',
     tag: 'Multi-modelo',
-    description: 'Accede a DeepSeek, Claude, Gemini y más con una sola clave.',
+    logo: 'OR',
+    description: 'DeepSeek, Claude, Gemini y más con una sola clave.',
     baseUrl: 'https://openrouter.ai/api/v1',
-    model: 'deepseek/deepseek-chat'
+    model: 'deepseek/deepseek-chat',
+    keyUrl: 'https://openrouter.ai/keys'
+  },
+  {
+    id: 'groq',
+    name: 'Groq',
+    tag: 'Ultrarrápido',
+    logo: 'GQ',
+    description: 'Inferencia de modelos abiertos con muy baja latencia.',
+    baseUrl: 'https://api.groq.com/openai/v1',
+    model: 'llama-3.3-70b-versatile',
+    keyUrl: 'https://console.groq.com/keys'
+  },
+  {
+    id: 'mistral',
+    name: 'Mistral AI',
+    tag: 'Europa',
+    logo: 'MI',
+    description: 'Mistral Large y Codestral, con API compatible con OpenAI.',
+    baseUrl: 'https://api.mistral.ai/v1',
+    model: 'mistral-large-latest',
+    keyUrl: 'https://console.mistral.ai/api-keys'
+  },
+  {
+    id: 'together',
+    name: 'Together AI',
+    tag: 'Open source',
+    logo: 'TA',
+    description: 'Catálogo amplio de modelos abiertos y endpoints dedicados.',
+    baseUrl: 'https://api.together.xyz/v1',
+    model: 'meta-llama/Llama-3.3-70B-Instruct-Turbo',
+    keyUrl: 'https://api.together.xyz/settings/api-keys'
+  },
+  {
+    id: 'perplexity',
+    name: 'Perplexity',
+    tag: 'Búsqueda web',
+    logo: 'PX',
+    description: 'Modelos Sonar con búsqueda web y respuestas actualizadas.',
+    baseUrl: 'https://api.perplexity.ai',
+    model: 'sonar-pro',
+    keyUrl: 'https://www.perplexity.ai/settings/api'
+  },
+  {
+    id: 'github',
+    name: 'GitHub Models',
+    tag: 'GitHub',
+    logo: 'GH',
+    description: 'Modelos de OpenAI, Meta y otros con un token de GitHub.',
+    baseUrl: 'https://models.github.ai/inference',
+    model: 'openai/gpt-4o-mini',
+    keyUrl: 'https://github.com/settings/personal-access-tokens'
+  },
+  {
+    id: 'huggingface',
+    name: 'Hugging Face',
+    tag: 'Open source',
+    logo: 'HF',
+    description: 'Router de Inference Providers con catálogo abierto.',
+    baseUrl: 'https://router.huggingface.co/v1',
+    model: 'meta-llama/Llama-3.3-70B-Instruct',
+    keyUrl: 'https://huggingface.co/settings/tokens'
   },
   {
     id: 'ollama',
     name: 'Ollama local',
     tag: 'Sin nube',
+    logo: 'OL',
     description: 'Ejecuta modelos en tu equipo. Sin coste por token.',
     baseUrl: 'http://localhost:11434/v1',
-    model: 'llama3.2'
+    model: 'llama3.2',
+    keyUrl: ''
+  },
+  {
+    id: 'lmstudio',
+    name: 'LM Studio',
+    tag: 'Local',
+    logo: 'LM',
+    description: 'Modelos locales desde la interfaz de LM Studio.',
+    baseUrl: 'http://localhost:1234/v1',
+    model: 'local-model',
+    keyUrl: ''
+  },
+  {
+    id: 'vllm',
+    name: 'vLLM',
+    tag: 'Autoalojado',
+    logo: 'vL',
+    description: 'Servidor OpenAI-compatible para tu propia infraestructura.',
+    baseUrl: 'http://localhost:8000/v1',
+    model: 'local-model',
+    keyUrl: ''
   },
   {
     id: 'custom',
     name: 'Personalizado',
     tag: 'API propia',
+    logo: 'API',
     description: 'Cualquier endpoint compatible con OpenAI Chat Completions.',
     baseUrl: 'https://api.example.com/v1',
-    model: ''
+    model: '',
+    keyUrl: ''
   }
 ] as const
 
@@ -157,7 +277,7 @@ export function SettingsModal() {
                 onClick={() => selectProvider(item.id)}
               >
                 <div className="provider-top">
-                  <span className={`provider-logo provider-${item.id}`}>{item.name.slice(0, 2)}</span>
+                  <span className={`provider-logo provider-${item.id}`}>{item.logo}</span>
                   <span className="provider-tag">{item.tag}</span>
                   {provider === item.id ? <CheckCircle2 size={15} className="provider-check" /> : null}
                 </div>
@@ -200,9 +320,13 @@ export function SettingsModal() {
                   Eliminar clave
                 </button>
               ) : null}
-              {provider === 'deepseek' ? (
-                <button type="button" className="link-btn" onClick={() => window.axiom?.app.openExternal('https://platform.deepseek.com/api_keys')}>
-                  Obtener clave de DeepSeek <ExternalLink size={11} />
+              {PROVIDERS.find((item) => item.id === provider)?.keyUrl ? (
+                <button
+                  type="button"
+                  className="link-btn"
+                  onClick={() => window.axiom?.app.openExternal(PROVIDERS.find((item) => item.id === provider)!.keyUrl)}
+                >
+                  Obtener clave de {PROVIDERS.find((item) => item.id === provider)?.name} <ExternalLink size={11} />
                 </button>
               ) : null}
             </div>
@@ -275,8 +399,12 @@ export function SettingsModal() {
           </div>
           <div className="settings-facts">
             <div>
-              <strong>DeepSeek</strong>
-              <span>deepseek-chat</span>
+              <strong>Proveedores</strong>
+              <span>16 integraciones</span>
+            </div>
+            <div>
+              <strong>Compatibilidad</strong>
+              <span>OpenAI + Anthropic</span>
             </div>
             <div>
               <strong>Contexto</strong>

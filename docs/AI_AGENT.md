@@ -161,9 +161,13 @@ El árbol se trunca a ~28 000 caracteres para mantener el contexto bajo control.
 
 ## Proveedores
 
-La integración usa `POST {baseUrl}/chat/completions` con `stream: true` y `Authorization: Bearer ...`. Para modelos de razonamiento se omite `temperature` y se muestran los `reasoning_content` en un bloque plegable.
+La integración usa `POST {baseUrl}/chat/completions` con `stream: true` y `Authorization: Bearer ...` para los proveedores compatibles con OpenAI. Para modelos de razonamiento se omite `temperature` y se muestran los `reasoning_content` en un bloque plegable.
 
-Proveedores probados por diseño: DeepSeek, OpenAI, OpenRouter y Ollama. Cualquier endpoint compatible con Chat Completions debería funcionar.
+**Anthropic** usa un adaptador nativo: `POST {baseUrl}/messages`, cabeceras `x-api-key` y `anthropic-version`, y traducción de los eventos `content_block_delta` / `message_delta` al mismo flujo de eventos de Axiom.
+
+Presets incluidos: DeepSeek, OpenAI, Anthropic Claude, Google Gemini, xAI Grok, OpenRouter, Groq, Mistral, Together AI, Perplexity, GitHub Models, Hugging Face, Ollama, LM Studio, vLLM y Personalizado. Los presets son puntos de partida: la URL base y el modelo se pueden editar.
+
+Los proveedores locales (`Ollama`, `LM Studio`, `vLLM` y URLs `localhost`/`127.0.0.1`) no requieren clave API.
 
 ## Extender el agente
 

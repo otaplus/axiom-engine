@@ -2,7 +2,7 @@ import { AlertTriangle, ChevronUp, Command, Sparkles, Terminal } from 'lucide-re
 import { Component, useEffect, useRef, useState, type ErrorInfo, type ReactNode } from 'react'
 import { initAIListeners } from './store/ai'
 import { activeScene, projectMetrics, useEditorStore } from './store/editor'
-import { useSettingsStore } from './store/settings'
+import { providerName, useSettingsStore } from './store/settings'
 import { serializeProject } from './engine/projectIO'
 import { AboutModal } from './components/AboutModal'
 import { BottomPanel } from './components/BottomPanel'
@@ -67,6 +67,7 @@ export default function App() {
   const cameraZoom = useEditorStore((state) => state.camera.zoom)
   const autosaveTimer = useRef<number | null>(null)
   const [toast, setToast] = useState<{ tone: 'ok' | 'error'; message: string } | null>(null)
+  const [appVersion, setAppVersion] = useState('0.2.0')
   const toastTimer = useRef<number | null>(null)
 
   const showToast = (tone: 'ok' | 'error', message: string) => {
@@ -136,6 +137,7 @@ export default function App() {
 
   useEffect(() => {
     void loadSettings()
+    void window.axiom?.app.versions().then((versions) => setAppVersion(versions.app))
     const cleanup = initAIListeners()
     return cleanup
   }, [loadSettings])
@@ -261,6 +263,7 @@ export default function App() {
   const scene = activeScene(useEditorStore.getState())
   const metrics = projectMetrics(project)
   const currentSettings = settings
+  const aiConnected = Boolean(currentSettings?.hasApiKey || currentSettings?.requiresApiKey === false)
 
   return (
     <div className="app-shell">
@@ -311,9 +314,11 @@ export default function App() {
             <Command size={11} /> <Kbd>Ctrl</Kbd> <Kbd>S</Kbd> guardar · <Kbd>F5</Kbd> jugar
           </div>
           <div className="status-right">
-            <span className={`ai-status ${currentSettings?.hasApiKey ? 'is-online' : ''}`}>
+            <span className={`ai-status ${aiConnected ? 'is-online' : ''}`}>
               <span className="status-dot" />
-              {currentSettings?.hasApiKey ? `${currentSettings.provider} · ${currentSettings.model}` : 'IA sin conectar'}
+              {aiConnected && currentSettings
+                ? `${providerName(currentSettings.provider)} · ${currentSettings.model}`
+                : 'IA sin conectar'}
             </span>
             <span className="status-sep" />
             <span>{editorFps} FPS editor</span>
@@ -322,7 +327,7 @@ export default function App() {
             <span className="status-sep" />
             <span>{filePath ? 'guardado en disco' : 'autoguardado local'}</span>
             <span className="status-sep" />
-            <span className="status-version">v0.1.0</span>
+            <span className="status-version">v{appVersion}</span>
           </div>
         </footer>
 

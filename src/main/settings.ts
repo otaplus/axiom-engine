@@ -2,7 +2,23 @@ import { app, safeStorage } from 'electron'
 import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 
-export type ProviderId = 'deepseek' | 'openai' | 'openrouter' | 'ollama' | 'custom'
+export type ProviderId =
+  | 'deepseek'
+  | 'openai'
+  | 'anthropic'
+  | 'google'
+  | 'xai'
+  | 'openrouter'
+  | 'groq'
+  | 'mistral'
+  | 'together'
+  | 'perplexity'
+  | 'github'
+  | 'huggingface'
+  | 'ollama'
+  | 'lmstudio'
+  | 'vllm'
+  | 'custom'
 
 export interface StoredSettings {
   version: 1
@@ -27,7 +43,7 @@ export interface PublicSettings {
 }
 
 export function providerRequiresApiKey(stored: Pick<StoredSettings, 'provider' | 'baseUrl'>): boolean {
-  if (stored.provider === 'ollama') return false
+  if (['ollama', 'lmstudio', 'vllm'].includes(stored.provider)) return false
   return !/(^|[/.])(localhost|127\.0\.0\.1|\[::1\])(:\d+)?(\/|$)/i.test(stored.baseUrl)
 }
 

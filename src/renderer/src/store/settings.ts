@@ -1,7 +1,46 @@
 import { create } from 'zustand'
 
+export const PROVIDER_NAMES: Record<string, string> = {
+  deepseek: 'DeepSeek',
+  openai: 'OpenAI',
+  anthropic: 'Anthropic Claude',
+  google: 'Google Gemini',
+  xai: 'xAI Grok',
+  openrouter: 'OpenRouter',
+  groq: 'Groq',
+  mistral: 'Mistral AI',
+  together: 'Together AI',
+  perplexity: 'Perplexity',
+  github: 'GitHub Models',
+  huggingface: 'Hugging Face',
+  ollama: 'Ollama local',
+  lmstudio: 'LM Studio',
+  vllm: 'vLLM',
+  custom: 'Personalizado'
+}
+
+export function providerName(id: string): string {
+  return PROVIDER_NAMES[id] ?? id
+}
+
 export interface PublicSettings {
-  provider: 'deepseek' | 'openai' | 'openrouter' | 'ollama' | 'custom'
+  provider:
+    | 'deepseek'
+    | 'openai'
+    | 'anthropic'
+    | 'google'
+    | 'xai'
+    | 'openrouter'
+    | 'groq'
+    | 'mistral'
+    | 'together'
+    | 'perplexity'
+    | 'github'
+    | 'huggingface'
+    | 'ollama'
+    | 'lmstudio'
+    | 'vllm'
+    | 'custom'
   baseUrl: string
   model: string
   temperature: number

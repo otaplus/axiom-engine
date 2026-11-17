@@ -1,7 +1,23 @@
 import { contextBridge, ipcRenderer } from 'electron'
 
 export interface PublicSettings {
-  provider: 'deepseek' | 'openai' | 'openrouter' | 'ollama' | 'custom'
+  provider:
+    | 'deepseek'
+    | 'openai'
+    | 'anthropic'
+    | 'google'
+    | 'xai'
+    | 'openrouter'
+    | 'groq'
+    | 'mistral'
+    | 'together'
+    | 'perplexity'
+    | 'github'
+    | 'huggingface'
+    | 'ollama'
+    | 'lmstudio'
+    | 'vllm'
+    | 'custom'
   baseUrl: string
   model: string
   temperature: number

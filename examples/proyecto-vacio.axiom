@@ -386,14 +386,14 @@
   ],
   "scenes": [
     {
-      "id": "scene_7d0e5f8099",
+      "id": "scene_4597406e60",
       "name": "Mundo",
       "settings": {
         "background": "#0b1220",
         "style": "grid"
       },
       "root": {
-        "id": "node_44a55b1d6e",
+        "id": "node_a369868ddd",
         "name": "Mundo",
         "type": "Node2D",
         "x": 0,
@@ -406,7 +406,7 @@
         "props": {},
         "children": [
           {
-            "id": "node_2a3cb1f29a",
+            "id": "node_759b5b8ab3",
             "name": "Cámara",
             "type": "Camera2D",
             "x": 0,
@@ -427,7 +427,7 @@
             "children": []
           },
           {
-            "id": "node_581286050b",
+            "id": "node_9ed0656c7a",
             "name": "Jugador",
             "type": "CharacterBody2D",
             "x": 0,
@@ -446,7 +446,7 @@
             },
             "children": [
               {
-                "id": "node_e97f55bde7",
+                "id": "node_b1dec8002a",
                 "name": "Aspecto",
                 "type": "Sprite2D",
                 "x": 0,
@@ -472,7 +472,7 @@
             ]
           },
           {
-            "id": "node_c3d7b3a8a2",
+            "id": "node_4e30e4efc8",
             "name": "Suelo",
             "type": "StaticBody2D",
             "x": 0,
@@ -492,7 +492,7 @@
             "children": []
           },
           {
-            "id": "node_829ccc24c2",
+            "id": "node_c3a6ba3d12",
             "name": "Interfaz",
             "type": "CanvasLayer",
             "x": 0,
@@ -505,7 +505,7 @@
             "props": {},
             "children": [
               {
-                "id": "node_b63f7e48a5",
+                "id": "node_25a738a180",
                 "name": "Título",
                 "type": "Label2D",
                 "x": 160,
@@ -536,7 +536,7 @@
       }
     }
   ],
-  "mainSceneId": "scene_7d0e5f8099",
-  "createdAt": "2026-11-17T18:51:31.335Z",
-  "updatedAt": "2026-11-17T18:51:31.335Z"
+  "mainSceneId": "scene_4597406e60",
+  "createdAt": "2026-11-17T19:30:12.683Z",
+  "updatedAt": "2026-11-17T19:30:12.683Z"
 }

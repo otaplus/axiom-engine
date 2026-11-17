@@ -386,14 +386,14 @@
   ],
   "scenes": [
     {
-      "id": "scene_3ee536a135",
+      "id": "scene_b0e2943df5",
       "name": "Cinturón Estelar",
       "settings": {
         "background": "#070b1c",
         "style": "stars"
       },
       "root": {
-        "id": "node_6522e1687b",
+        "id": "node_f2c2ca7fe7",
         "name": "Cinturón Estelar",
         "type": "Node2D",
         "x": 0,
@@ -406,7 +406,7 @@
         "props": {},
         "children": [
           {
-            "id": "node_3b9cf72261",
+            "id": "node_34e6781484",
             "name": "Cosmos",
             "type": "Node2D",
             "x": 0,
@@ -419,7 +419,7 @@
             "props": {},
             "children": [
               {
-                "id": "node_625a6355ed",
+                "id": "node_7383171577",
                 "name": "Planeta lejano",
                 "type": "Sprite2D",
                 "x": 350,
@@ -444,7 +444,7 @@
                 "children": []
               },
               {
-                "id": "node_8b795a10b6",
+                "id": "node_9ff0db1d51",
                 "name": "Nebulosa",
                 "type": "Sprite2D",
                 "x": -330,
@@ -471,7 +471,7 @@
             ]
           },
           {
-            "id": "node_a11118d24b",
+            "id": "node_d83c203469",
             "name": "Nave",
             "type": "CharacterBody2D",
             "x": 0,
@@ -491,7 +491,7 @@
             "script": "_ready() {\n  this.speed = 380\n  this.invuln = 0\n  this.auto = 0.2\n  Game.on('damage', () => this.hurt())\n}\n\n_process(dt) {\n  this.auto -= dt\n  if (this.auto <= 0) {\n    this.auto = 0.2\n    this.shoot()\n  }\n}\n\n_physics_process(dt) {\n  const dirX = Input.get_axis('left', 'right')\n  const dirY = Input.get_axis('up', 'down')\n  this.velocity.x = dirX * this.speed\n  this.velocity.y = dirY * this.speed\n  this.move_and_slide(dt)\n  this.x = clamp(this.x, -430, 430)\n  this.y = clamp(this.y, -220, 225)\n  if (this.invuln > 0) {\n    this.invuln -= dt\n    const sprite = this.get_node('Aspecto')\n    if (sprite) sprite.visible = Math.floor(this.invuln * 16) % 2 === 0\n  } else {\n    const sprite = this.get_node('Aspecto')\n    if (sprite) sprite.visible = true\n  }\n}\n\nshoot() {\n  this.spawn('Bala', this.x, this.y - 34)\n  this.play_sound('laser', 0.35)\n}\n\nhurt() {\n  if (this.invuln > 0) return\n  this.invuln = 1.5\n  this.shake(15, 0.4)\n  this.play_sound('hit')\n  Game.lives = Math.max(0, Game.lives - 1)\n  if (Game.lives <= 0) Game.game_over(false, 'La nave fue destruida en el cinturón de asteroides')\n}",
             "children": [
               {
-                "id": "node_055cb12d6d",
+                "id": "node_042b467d71",
                 "name": "Aspecto",
                 "type": "Sprite2D",
                 "x": 0,
@@ -516,7 +516,7 @@
                 "children": []
               },
               {
-                "id": "node_fee793b920",
+                "id": "node_828f2ac4bf",
                 "name": "Propulsión",
                 "type": "Particles2D",
                 "x": 0,
@@ -541,7 +541,7 @@
             ]
           },
           {
-            "id": "node_2a52ec0129",
+            "id": "node_1a1ccb95e9",
             "name": "Plantillas",
             "type": "Node2D",
             "x": 0,
@@ -554,7 +554,7 @@
             "props": {},
             "children": [
               {
-                "id": "node_59b70262ec",
+                "id": "node_ec6d4af83e",
                 "name": "Bala",
                 "type": "Area2D",
                 "x": 0,
@@ -574,7 +574,7 @@
                 "script": "_ready() {\n  this.velocity.y = -680\n}\n\n_physics_process(dt) {\n  this.y += this.velocity.y * dt\n  if (this.y < -330) {\n    this.queue_free()\n    return\n  }\n  const hits = this.overlaps('enemy')\n  if (hits.length > 0) {\n    for (const enemy of hits) {\n      Game.add_score(5)\n      enemy.queue_free()\n    }\n    this.play_sound('explosion', 0.4)\n    this.queue_free()\n  }\n}",
                 "children": [
                   {
-                    "id": "node_cbb7a9523e",
+                    "id": "node_6a96efaa24",
                     "name": "Chispa",
                     "type": "Sprite2D",
                     "x": 0,
@@ -601,7 +601,7 @@
                 ]
               },
               {
-                "id": "node_d3f137150e",
+                "id": "node_f8aabc352b",
                 "name": "Enemigo",
                 "type": "Area2D",
                 "x": 0,
@@ -621,7 +621,7 @@
                 "script": "_ready() {\n  this.speed = 85\n  this.drift = rand(-35, 35)\n  this.spin = rand(-1, 1)\n}\n\n_physics_process(dt) {\n  this.y += this.speed * dt\n  this.x += this.drift * dt\n  this.rotation += this.spin * 35 * dt\n  if (this.y > 330) {\n    this.queue_free()\n    return\n  }\n  if (this.overlaps('player').length > 0) {\n    this.play_sound('hit')\n    Game.emit('damage')\n    this.queue_free()\n  }\n}",
                 "children": [
                   {
-                    "id": "node_f7acc9be94",
+                    "id": "node_3e556b7f1a",
                     "name": "Alien",
                     "type": "Sprite2D",
                     "x": 0,
@@ -650,7 +650,7 @@
             ]
           },
           {
-            "id": "node_b4be67f139",
+            "id": "node_69d92fa5b2",
             "name": "Generador",
             "type": "Timer",
             "x": 0,
@@ -669,7 +669,7 @@
             "children": []
           },
           {
-            "id": "node_a1bbb9d5e9",
+            "id": "node_8580f446fd",
             "name": "Interfaz",
             "type": "CanvasLayer",
             "x": 0,
@@ -682,7 +682,7 @@
             "props": {},
             "children": [
               {
-                "id": "node_4886385566",
+                "id": "node_9a71f79f8f",
                 "name": "Puntos",
                 "type": "Label2D",
                 "x": 130,
@@ -708,7 +708,7 @@
                 "children": []
               },
               {
-                "id": "node_b72c2625e7",
+                "id": "node_32251d6cd9",
                 "name": "Vidas",
                 "type": "Label2D",
                 "x": 100,
@@ -734,7 +734,7 @@
                 "children": []
               },
               {
-                "id": "node_313f097f20",
+                "id": "node_fe95dc91f9",
                 "name": "Titulo",
                 "type": "Label2D",
                 "x": 780,
@@ -760,7 +760,7 @@
                 "children": []
               },
               {
-                "id": "node_e48722d78e",
+                "id": "node_8716198a0e",
                 "name": "Ayuda",
                 "type": "Label2D",
                 "x": 480,
@@ -791,7 +791,7 @@
       }
     }
   ],
-  "mainSceneId": "scene_3ee536a135",
-  "createdAt": "2026-11-17T18:51:31.062Z",
-  "updatedAt": "2026-11-17T18:51:31.063Z"
+  "mainSceneId": "scene_b0e2943df5",
+  "createdAt": "2026-11-17T19:30:12.418Z",
+  "updatedAt": "2026-11-17T19:30:12.418Z"
 }

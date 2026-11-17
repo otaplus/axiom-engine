@@ -40,7 +40,7 @@ export function AboutModal() {
           <div>
             <Sparkles size={15} />
             <strong>IA primero</strong>
-            <span>Chat con DeepSeek, agente de cambios y contexto real del proyecto.</span>
+            <span>Chat con DeepSeek, Claude, Gemini y más; agente de cambios y contexto real.</span>
           </div>
           <div>
             <Cpu size={15} />

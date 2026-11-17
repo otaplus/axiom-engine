@@ -386,14 +386,14 @@
   ],
   "scenes": [
     {
-      "id": "scene_5ed5e55844",
+      "id": "scene_fad783d08a",
       "name": "Bosque",
       "settings": {
         "background": "#091c20",
         "style": "stars"
       },
       "root": {
-        "id": "node_5bd023219d",
+        "id": "node_4dd7313616",
         "name": "Bosque",
         "type": "Node2D",
         "x": 0,
@@ -406,7 +406,7 @@
         "props": {},
         "children": [
           {
-            "id": "node_d3cc2eaf95",
+            "id": "node_75fcc5c92f",
             "name": "Fondo",
             "type": "Node2D",
             "x": 0,
@@ -419,7 +419,7 @@
             "props": {},
             "children": [
               {
-                "id": "node_4afdce7d5e",
+                "id": "node_72ee9a583a",
                 "name": "Luna",
                 "type": "Sprite2D",
                 "x": 300,
@@ -444,7 +444,7 @@
                 "children": []
               },
               {
-                "id": "node_fb033d61d3",
+                "id": "node_eaa5bd7dc4",
                 "name": "Nube lejana",
                 "type": "Sprite2D",
                 "x": -340,
@@ -468,7 +468,7 @@
                 "children": []
               },
               {
-                "id": "node_5ee9a1382e",
+                "id": "node_e53bcf94c7",
                 "name": "Nube alta",
                 "type": "Sprite2D",
                 "x": 80,
@@ -492,7 +492,7 @@
                 "children": []
               },
               {
-                "id": "node_a42b759424",
+                "id": "node_c2d51207e3",
                 "name": "Árbol izquierdo",
                 "type": "Sprite2D",
                 "x": -590,
@@ -516,7 +516,7 @@
                 "children": []
               },
               {
-                "id": "node_ac7338d3c1",
+                "id": "node_6008b6341e",
                 "name": "Árbol medio",
                 "type": "Sprite2D",
                 "x": -460,
@@ -540,7 +540,7 @@
                 "children": []
               },
               {
-                "id": "node_fdf44caa08",
+                "id": "node_a6e971edd2",
                 "name": "Árbol derecho",
                 "type": "Sprite2D",
                 "x": 540,
@@ -566,7 +566,7 @@
             ]
           },
           {
-            "id": "node_dfdf4ccd41",
+            "id": "node_421af93600",
             "name": "Cámara",
             "type": "Camera2D",
             "x": 0,
@@ -587,7 +587,7 @@
             "children": []
           },
           {
-            "id": "node_7c69f936c6",
+            "id": "node_b2caa0dd69",
             "name": "Suelo",
             "type": "StaticBody2D",
             "x": 0,
@@ -607,7 +607,7 @@
             "children": []
           },
           {
-            "id": "node_c4c9c3360c",
+            "id": "node_134fb1eb79",
             "name": "Plataforma oeste",
             "type": "StaticBody2D",
             "x": -520,
@@ -627,7 +627,7 @@
             "children": []
           },
           {
-            "id": "node_51c68dc781",
+            "id": "node_ccbd081b6a",
             "name": "Plataforma baja",
             "type": "StaticBody2D",
             "x": -265,
@@ -647,7 +647,7 @@
             "children": []
           },
           {
-            "id": "node_cef214b648",
+            "id": "node_9fa9a28c9b",
             "name": "Plataforma media",
             "type": "StaticBody2D",
             "x": 40,
@@ -667,7 +667,7 @@
             "children": []
           },
           {
-            "id": "node_9eb877baef",
+            "id": "node_b6b902e0e6",
             "name": "Plataforma este",
             "type": "StaticBody2D",
             "x": 360,
@@ -687,7 +687,7 @@
             "children": []
           },
           {
-            "id": "node_7f7350e6e6",
+            "id": "node_8e3290a011",
             "name": "Plataforma alta",
             "type": "StaticBody2D",
             "x": 570,
@@ -707,7 +707,7 @@
             "children": []
           },
           {
-            "id": "node_a37646ef47",
+            "id": "node_aa1c6d9f5d",
             "name": "Jugador",
             "type": "CharacterBody2D",
             "x": -380,
@@ -727,7 +727,7 @@
             "script": "_ready() {\n  this.speed = 315\n  this.jump_force = 735\n  this.coyote = 0\n  this.buffer = 0\n  this.invuln = 0\n  this.facing = 1\n  Game.on('damage', () => this.hurt())\n}\n\n_physics_process(dt) {\n  const dir = Input.get_axis('left', 'right')\n  this.velocity.x = dir * this.speed\n  if (dir !== 0) {\n    this.facing = dir\n    const sprite = this.get_node('Aspecto')\n    if (sprite) sprite.props.flipX = dir < 0\n  }\n\n  if (this.on_floor) this.coyote = 0.11\n  else this.coyote = Math.max(0, this.coyote - dt)\n\n  if (Input.is_action_just_pressed('jump')) this.buffer = 0.13\n  else this.buffer = Math.max(0, this.buffer - dt)\n\n  this.velocity.y += this.gravity * dt\n  if (this.buffer > 0 && this.coyote > 0) {\n    this.velocity.y = -this.jump_force\n    this.buffer = 0\n    this.coyote = 0\n    this.play_sound('jump')\n  }\n\n  this.move_and_slide(dt)\n\n  if (this.invuln > 0) {\n    this.invuln -= dt\n    const sprite = this.get_node('Aspecto')\n    if (sprite) sprite.visible = Math.floor(this.invuln * 18) % 2 === 0\n  } else {\n    const sprite = this.get_node('Aspecto')\n    if (sprite) sprite.visible = true\n  }\n\n  if (this.y > 430) this.hurt()\n}\n\nhurt() {\n  if (this.invuln > 0) return\n  this.invuln = 1.35\n  this.play_sound('hit')\n  this.shake(10, 0.32)\n  Game.lives = Math.max(0, Game.lives - 1)\n  if (Game.lives <= 0) {\n    Game.game_over(false, 'Las sombras del bosque te atraparon')\n    return\n  }\n  this.x = -380\n  this.y = 120\n  this.velocity.x = 0\n  this.velocity.y = 0\n}",
             "children": [
               {
-                "id": "node_4d53450521",
+                "id": "node_4f8fc0ff1d",
                 "name": "Aspecto",
                 "type": "Sprite2D",
                 "x": 0,
@@ -751,7 +751,7 @@
                 "children": []
               },
               {
-                "id": "node_471ee19c45",
+                "id": "node_3b907c47b8",
                 "name": "Aura",
                 "type": "Particles2D",
                 "x": 0,
@@ -776,7 +776,7 @@
             ]
           },
           {
-            "id": "node_92e784764b",
+            "id": "node_a79488e432",
             "name": "Chispa 1",
             "type": "Area2D",
             "x": -520,
@@ -795,7 +795,7 @@
             "script": "_ready() {\n  this.taken = false\n}\n\n_physics_process() {\n  if (this.taken) return\n  if (this.overlaps('player').length > 0) {\n    this.taken = true\n    Game.add_score(10)\n    this.play_sound('coin')\n    Game.emit('coin')\n    this.queue_free()\n  }\n}",
             "children": [
               {
-                "id": "node_cd7be2617f",
+                "id": "node_0205acde96",
                 "name": "Moneda",
                 "type": "Sprite2D",
                 "x": 0,
@@ -820,7 +820,7 @@
                 "children": []
               },
               {
-                "id": "node_247dbd458e",
+                "id": "node_dd73cff809",
                 "name": "Brillo",
                 "type": "Particles2D",
                 "x": 0,
@@ -845,7 +845,7 @@
             ]
           },
           {
-            "id": "node_810048d25a",
+            "id": "node_7cc3765d6a",
             "name": "Chispa 2",
             "type": "Area2D",
             "x": -265,
@@ -864,7 +864,7 @@
             "script": "_ready() {\n  this.taken = false\n}\n\n_physics_process() {\n  if (this.taken) return\n  if (this.overlaps('player').length > 0) {\n    this.taken = true\n    Game.add_score(10)\n    this.play_sound('coin')\n    Game.emit('coin')\n    this.queue_free()\n  }\n}",
             "children": [
               {
-                "id": "node_4805c94cb8",
+                "id": "node_e45cb93bc5",
                 "name": "Moneda",
                 "type": "Sprite2D",
                 "x": 0,
@@ -889,7 +889,7 @@
                 "children": []
               },
               {
-                "id": "node_6cb75d7d11",
+                "id": "node_8468e32a84",
                 "name": "Brillo",
                 "type": "Particles2D",
                 "x": 0,
@@ -914,7 +914,7 @@
             ]
           },
           {
-            "id": "node_86c9a40efb",
+            "id": "node_5a058fe6ab",
             "name": "Chispa 3",
             "type": "Area2D",
             "x": -160,
@@ -933,7 +933,7 @@
             "script": "_ready() {\n  this.taken = false\n}\n\n_physics_process() {\n  if (this.taken) return\n  if (this.overlaps('player').length > 0) {\n    this.taken = true\n    Game.add_score(10)\n    this.play_sound('coin')\n    Game.emit('coin')\n    this.queue_free()\n  }\n}",
             "children": [
               {
-                "id": "node_fffdb4e115",
+                "id": "node_4ce85019a3",
                 "name": "Moneda",
                 "type": "Sprite2D",
                 "x": 0,
@@ -958,7 +958,7 @@
                 "children": []
               },
               {
-                "id": "node_05e1efe171",
+                "id": "node_66c2dd0f47",
                 "name": "Brillo",
                 "type": "Particles2D",
                 "x": 0,
@@ -983,7 +983,7 @@
             ]
           },
           {
-            "id": "node_8c618f753a",
+            "id": "node_6f6ae79ecf",
             "name": "Chispa 4",
             "type": "Area2D",
             "x": 40,
@@ -1002,7 +1002,7 @@
             "script": "_ready() {\n  this.taken = false\n}\n\n_physics_process() {\n  if (this.taken) return\n  if (this.overlaps('player').length > 0) {\n    this.taken = true\n    Game.add_score(10)\n    this.play_sound('coin')\n    Game.emit('coin')\n    this.queue_free()\n  }\n}",
             "children": [
               {
-                "id": "node_100598892c",
+                "id": "node_764c0b454f",
                 "name": "Moneda",
                 "type": "Sprite2D",
                 "x": 0,
@@ -1027,7 +1027,7 @@
                 "children": []
               },
               {
-                "id": "node_82b61c3ad2",
+                "id": "node_10baf4bab0",
                 "name": "Brillo",
                 "type": "Particles2D",
                 "x": 0,
@@ -1052,7 +1052,7 @@
             ]
           },
           {
-            "id": "node_62153f392c",
+            "id": "node_fcfd701b9a",
             "name": "Chispa 5",
             "type": "Area2D",
             "x": 360,
@@ -1071,7 +1071,7 @@
             "script": "_ready() {\n  this.taken = false\n}\n\n_physics_process() {\n  if (this.taken) return\n  if (this.overlaps('player').length > 0) {\n    this.taken = true\n    Game.add_score(10)\n    this.play_sound('coin')\n    Game.emit('coin')\n    this.queue_free()\n  }\n}",
             "children": [
               {
-                "id": "node_5704090ddb",
+                "id": "node_3829131ad8",
                 "name": "Moneda",
                 "type": "Sprite2D",
                 "x": 0,
@@ -1096,7 +1096,7 @@
                 "children": []
               },
               {
-                "id": "node_2cf766145e",
+                "id": "node_27a35430d1",
                 "name": "Brillo",
                 "type": "Particles2D",
                 "x": 0,
@@ -1121,7 +1121,7 @@
             ]
           },
           {
-            "id": "node_0797854330",
+            "id": "node_0c2365001f",
             "name": "Chispa 6",
             "type": "Area2D",
             "x": 570,
@@ -1140,7 +1140,7 @@
             "script": "_ready() {\n  this.taken = false\n}\n\n_physics_process() {\n  if (this.taken) return\n  if (this.overlaps('player').length > 0) {\n    this.taken = true\n    Game.add_score(10)\n    this.play_sound('coin')\n    Game.emit('coin')\n    this.queue_free()\n  }\n}",
             "children": [
               {
-                "id": "node_01ba91b1f5",
+                "id": "node_f3c5f5435d",
                 "name": "Moneda",
                 "type": "Sprite2D",
                 "x": 0,
@@ -1165,7 +1165,7 @@
                 "children": []
               },
               {
-                "id": "node_47ecddcebc",
+                "id": "node_d7d4560cca",
                 "name": "Brillo",
                 "type": "Particles2D",
                 "x": 0,
@@ -1190,7 +1190,7 @@
             ]
           },
           {
-            "id": "node_709f819042",
+            "id": "node_739860de18",
             "name": "Chispa 7",
             "type": "Area2D",
             "x": 660,
@@ -1209,7 +1209,7 @@
             "script": "_ready() {\n  this.taken = false\n}\n\n_physics_process() {\n  if (this.taken) return\n  if (this.overlaps('player').length > 0) {\n    this.taken = true\n    Game.add_score(10)\n    this.play_sound('coin')\n    Game.emit('coin')\n    this.queue_free()\n  }\n}",
             "children": [
               {
-                "id": "node_4e36957bdd",
+                "id": "node_3ff718658f",
                 "name": "Moneda",
                 "type": "Sprite2D",
                 "x": 0,
@@ -1234,7 +1234,7 @@
                 "children": []
               },
               {
-                "id": "node_a0a2ac0c16",
+                "id": "node_ec39df30e0",
                 "name": "Brillo",
                 "type": "Particles2D",
                 "x": 0,
@@ -1259,7 +1259,7 @@
             ]
           },
           {
-            "id": "node_d369c4c8ae",
+            "id": "node_e7ead0b464",
             "name": "Chispa 8",
             "type": "Area2D",
             "x": -690,
@@ -1278,7 +1278,7 @@
             "script": "_ready() {\n  this.taken = false\n}\n\n_physics_process() {\n  if (this.taken) return\n  if (this.overlaps('player').length > 0) {\n    this.taken = true\n    Game.add_score(10)\n    this.play_sound('coin')\n    Game.emit('coin')\n    this.queue_free()\n  }\n}",
             "children": [
               {
-                "id": "node_c023242781",
+                "id": "node_8a3d197056",
                 "name": "Moneda",
                 "type": "Sprite2D",
                 "x": 0,
@@ -1303,7 +1303,7 @@
                 "children": []
               },
               {
-                "id": "node_9f7a72c521",
+                "id": "node_4cd858777e",
                 "name": "Brillo",
                 "type": "Particles2D",
                 "x": 0,
@@ -1328,7 +1328,7 @@
             ]
           },
           {
-            "id": "node_a3726ad180",
+            "id": "node_dff4d2a561",
             "name": "Slime patrulla",
             "type": "Area2D",
             "x": -90,
@@ -1347,7 +1347,7 @@
             "script": "_ready() {\n  this.dir = 1\n  this.speed = 58\n  this.min_x = this.x - 95\n  this.max_x = this.x + 95\n}\n\n_physics_process(dt) {\n  this.x += this.dir * this.speed * dt\n  if (this.x < this.min_x || this.x > this.max_x) this.dir *= -1\n  const sprite = this.get_node('Slime')\n  if (sprite) sprite.props.flipX = this.dir < 0\n  if (this.overlaps('player').length > 0) Game.emit('damage')\n}",
             "children": [
               {
-                "id": "node_312ad9b5b9",
+                "id": "node_3e5a71a839",
                 "name": "Slime",
                 "type": "Sprite2D",
                 "x": 0,
@@ -1373,7 +1373,7 @@
             ]
           },
           {
-            "id": "node_64419d6ff2",
+            "id": "node_dff5332dd3",
             "name": "Slime curioso",
             "type": "Area2D",
             "x": 280,
@@ -1392,7 +1392,7 @@
             "script": "_ready() {\n  this.dir = 1\n  this.speed = 58\n  this.min_x = this.x - 95\n  this.max_x = this.x + 95\n}\n\n_physics_process(dt) {\n  this.x += this.dir * this.speed * dt\n  if (this.x < this.min_x || this.x > this.max_x) this.dir *= -1\n  const sprite = this.get_node('Slime')\n  if (sprite) sprite.props.flipX = this.dir < 0\n  if (this.overlaps('player').length > 0) Game.emit('damage')\n}",
             "children": [
               {
-                "id": "node_d543bfb1ce",
+                "id": "node_e5c0356e17",
                 "name": "Slime",
                 "type": "Sprite2D",
                 "x": 0,
@@ -1418,7 +1418,7 @@
             ]
           },
           {
-            "id": "node_bf3cc0d882",
+            "id": "node_962e687a90",
             "name": "Pinchos visuales",
             "type": "StaticBody2D",
             "x": 465,
@@ -1439,7 +1439,7 @@
             "children": []
           },
           {
-            "id": "node_4bc15f1955",
+            "id": "node_6675bd8d62",
             "name": "Pinchos",
             "type": "Area2D",
             "x": 465,
@@ -1459,7 +1459,7 @@
             "children": []
           },
           {
-            "id": "node_d66ea37d5d",
+            "id": "node_55429c5ee3",
             "name": "Meta",
             "type": "Area2D",
             "x": 655,
@@ -1478,7 +1478,7 @@
             "script": "_physics_process() {\n  if (this.overlaps('player').length > 0) {\n    this.play_sound('win')\n    Game.win('¡Has encontrado la chispa dorada!')\n  }\n}",
             "children": [
               {
-                "id": "node_f3f13d0075",
+                "id": "node_2b8e6a0e86",
                 "name": "Bandera",
                 "type": "Sprite2D",
                 "x": 0,
@@ -1505,7 +1505,7 @@
             ]
           },
           {
-            "id": "node_17c534e885",
+            "id": "node_65e0166ca5",
             "name": "Interfaz",
             "type": "CanvasLayer",
             "x": 0,
@@ -1518,7 +1518,7 @@
             "props": {},
             "children": [
               {
-                "id": "node_39a2a714da",
+                "id": "node_8726fa3654",
                 "name": "Puntos",
                 "type": "Label2D",
                 "x": 130,
@@ -1544,7 +1544,7 @@
                 "children": []
               },
               {
-                "id": "node_f90d3ea5c4",
+                "id": "node_622ff07556",
                 "name": "Vidas",
                 "type": "Label2D",
                 "x": 104,
@@ -1570,7 +1570,7 @@
                 "children": []
               },
               {
-                "id": "node_cc7565863d",
+                "id": "node_938776e273",
                 "name": "Titulo",
                 "type": "Label2D",
                 "x": 780,
@@ -1596,7 +1596,7 @@
                 "children": []
               },
               {
-                "id": "node_0004b43643",
+                "id": "node_d611f429a9",
                 "name": "Ayuda",
                 "type": "Label2D",
                 "x": 480,
@@ -1627,7 +1627,7 @@
       }
     }
   ],
-  "mainSceneId": "scene_5ed5e55844",
-  "createdAt": "2026-11-17T18:51:30.774Z",
-  "updatedAt": "2026-11-17T18:51:30.774Z"
+  "mainSceneId": "scene_fad783d08a",
+  "createdAt": "2026-11-17T19:30:12.136Z",
+  "updatedAt": "2026-11-17T19:30:12.136Z"
 }

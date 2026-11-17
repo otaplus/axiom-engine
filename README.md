@@ -6,18 +6,18 @@
 
 <p align="center">
   Un motor de videojuegos 2D para crear conversando con IA.<br />
-  Editor visual, runtime jugable y Copiloto DeepSeek en una sola aplicación de escritorio.
+  Editor visual, runtime jugable y Copiloto IA multi-proveedor en una sola aplicación de escritorio.
 </p>
 
 <p align="center">
-  <img alt="Estado" src="https://img.shields.io/badge/estado-alfa%200.1.0-f59e0b" />
+  <img alt="Estado" src="https://img.shields.io/badge/estado-alfa%200.2.0-f59e0b" />
   <img alt="Plataforma" src="https://img.shields.io/badge/plataforma-Windows%2010%2F11-38bdf8" />
   <img alt="Licencia" src="https://img.shields.io/badge/licencia-MIT-34d399" />
 </p>
 
 <p align="center">
   <a href="https://github.com/otaplus/axiom-engine">Repositorio</a> ·
-  <a href="https://github.com/otaplus/axiom-engine/releases/tag/v0.1.0">Descargar v0.1.0</a> ·
+  <a href="https://github.com/otaplus/axiom-engine/releases/tag/v0.2.0">Descargar v0.2.0</a> ·
   <a href="docs/SCRIPTING.md">API de scripting</a> ·
   <a href="docs/AI_AGENT.md">Protocolo del agente</a>
 </p>
@@ -36,7 +36,7 @@
 | Runtime 2D | Escenas, cámara con seguimiento y suavizado, física AABB, plataformas, áreas de detección, partículas, HUD, pausa, victoria/derrota y reinicio |
 | Scripts | Comportamientos en JavaScript con API estilo Godot: `_ready`, `_process`, `_physics_process`, `move_and_slide`, señales, plantillas y proyectiles |
 | Assets | Biblioteca de emojis, formas vectoriales, monedas dibujadas por código, importación de imágenes y assets creados por IA |
-| IA | Chat con DeepSeek, streaming en tiempo real, contexto del proyecto, modo agente, aplicación de cambios con historial y deshacer |
+| IA | Chat con DeepSeek, Claude, Gemini, Groq, Mistral y más; streaming, contexto del proyecto, modo agente y deshacer |
 | Proyecto | Guardar/abrir `.axiom`, autoguardado local, múltiples escenas, escena principal y exportación portable |
 | Distribución | Build de Windows en ZIP, icono propio y aplicación empaquetada con Electron |
 
@@ -50,9 +50,9 @@
 | --- | --- |
 | ![Bienvenida](docs/screenshots/welcome.png) | ![Shooter](docs/screenshots/shooter.png) |
 
-| Plantillas | Conexión de IA |
+| Plantillas | 16 proveedores de IA |
 | --- | --- |
-| ![Plantillas](docs/screenshots/templates.png) | ![Ajustes de IA](docs/screenshots/settings.png) |
+| ![Plantillas](docs/screenshots/templates.png) | ![Proveedores de IA](docs/screenshots/providers.png) |
 
 ---
 
@@ -60,7 +60,7 @@
 
 ### Opción A — Aplicación empaquetada (Windows)
 
-1. Descarga [Axiom-Engine-0.1.0-x64.zip](https://github.com/otaplus/axiom-engine/releases/download/v0.1.0/Axiom-Engine-0.1.0-x64.zip) o usa el ZIP local `release/Axiom-Engine-0.1.0-x64.zip`. Descomprímelo.
+1. Descarga [Axiom-Engine-0.2.0-x64.zip](https://github.com/otaplus/axiom-engine/releases/download/v0.2.0/Axiom-Engine-0.2.0-x64.zip) o usa el ZIP local `release/Axiom-Engine-0.2.0-x64.zip`. Descomprímelo.
 2. Ejecuta `Axiom Engine.exe`.
 3. Abre **Copiloto → Conectar** y pega una clave API de [DeepSeek](https://platform.deepseek.com/api_keys).
 4. Escribe lo que quieres crear y pulsa **Enter**.
@@ -117,14 +117,32 @@ En [`examples/`](examples/) hay tres proyectos listos para abrir:
 - [`cazador-estelar.axiom`](examples/cazador-estelar.axiom)
 - [`proyecto-vacio.axiom`](examples/proyecto-vacio.axiom)
 
-### Proveedores compatibles
+### Proveedores de IA incluidos
 
-Axiom usa la API de Chat Completions compatible con OpenAI. Puedes usar:
+Axiom incluye presets para los proveedores más conocidos y permite editar la URL base, el modelo y la temperatura:
 
-- **DeepSeek** (recomendado): `https://api.deepseek.com/v1` + `deepseek-chat` o `deepseek-reasoner`.
-- **OpenAI**, **OpenRouter** o cualquier endpoint compatible.
-- **Ollama** local: `http://localhost:11434/v1` + el modelo que tengas instalado (no requiere clave).
-- También se puede usar una clave de las variables de entorno `DEEPSEEK_API_KEY` u `OPENAI_API_KEY`.
+| Proveedor | Tipo | Modelo inicial |
+| --- | --- | --- |
+| **DeepSeek** | OpenAI-compatible | `deepseek-chat` |
+| **OpenAI** | OpenAI-compatible | `gpt-4o-mini` |
+| **Anthropic Claude** | API nativa adaptada | `claude-sonnet-4-5` |
+| **Google Gemini** | OpenAI-compatible | `gemini-2.5-flash` |
+| **xAI Grok** | OpenAI-compatible | `grok-3` |
+| **OpenRouter** | Multi-modelo | `deepseek/deepseek-chat` |
+| **Groq** | OpenAI-compatible | `llama-3.3-70b-versatile` |
+| **Mistral AI** | OpenAI-compatible | `mistral-large-latest` |
+| **Together AI** | OpenAI-compatible | Llama 3.3 70B |
+| **Perplexity** | OpenAI-compatible | `sonar-pro` |
+| **GitHub Models** | OpenAI-compatible | `openai/gpt-4o-mini` |
+| **Hugging Face** | Router OpenAI-compatible | Llama 3.3 70B |
+| **Ollama** | Local, sin clave | `llama3.2` |
+| **LM Studio** | Local, sin clave | `local-model` |
+| **vLLM** | Autoalojado, sin clave | `local-model` |
+| **Personalizado** | Cualquier endpoint compatible | — |
+
+Los modelos son solo un punto de partida: puedes escribir otro identificador en los ajustes avanzados. Para Anthropic se usa su API nativa de mensajes (no necesita proxy). Los proveedores locales no requieren clave API.
+
+También se pueden usar las variables de entorno `DEEPSEEK_API_KEY` u `OPENAI_API_KEY` como clave de respaldo.
 
 La clave se guarda cifrada con el almacén seguro del sistema (`safeStorage`) y **nunca se envía al renderer**. Las peticiones salen del proceso principal de Electron directamente al proveedor elegido. No hay telemetría.
 
@@ -203,7 +221,7 @@ El runtime expone `Game`, `Input`, `print`, `rand`, `clamp`, `lerp`, `dist`, `Ve
 
 ## Estado del proyecto
 
-Axiom 0.1.0 es una **alfa funcional**. Es un motor real y jugable, pero no pretende sustituir todavía a Godot en proyectos grandes.
+Axiom 0.2.0 es una **alfa funcional**. Es un motor real y jugable, pero no pretende sustituir todavía a Godot en proyectos grandes.
 
 ### Incluido
 

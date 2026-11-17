@@ -81,6 +81,62 @@ const server = createServer((request, response) => {
     response.end(JSON.stringify({ object: 'list', data: [{ id: 'mock-deepseek' }, { id: 'mock-reasoner' }] }))
     return
   }
+  if (request.method === 'GET' && request.url?.startsWith('/anthropic/v1/models')) {
+    response.writeHead(200, { 'Content-Type': 'application/json' })
+    response.end(JSON.stringify({ data: [{ id: 'mock-claude' }, { id: 'mock-claude-sonnet' }] }))
+    return
+  }
+  if (request.method === 'POST' && request.url?.startsWith('/anthropic/v1/messages')) {
+    let body = ''
+    request.on('data', (chunk) => (body += chunk))
+    request.on('end', async () => {
+      let parsed = {}
+      try {
+        parsed = JSON.parse(body)
+      } catch {
+        // ignore
+      }
+      response.writeHead(200, {
+        'Content-Type': 'text/event-stream',
+        'Cache-Control': 'no-cache',
+        Connection: 'keep-alive'
+      })
+      response.write(
+        `event: message_start\ndata: ${JSON.stringify({
+          type: 'message_start',
+          message: { id: 'msg_mock', usage: { input_tokens: 120, output_tokens: 1 } }
+        })}\n\n`
+      )
+      response.write(
+        `event: content_block_start\ndata: ${JSON.stringify({
+          type: 'content_block_start',
+          index: 0,
+          content_block: { type: 'text', text: '' }
+        })}\n\n`
+      )
+      const text = `Soy Claude simulado. Recibí ${parsed.messages?.length ?? 0} mensajes y un system prompt de ${String(parsed.system ?? '').length} caracteres.`
+      for (let index = 0; index < text.length; index += 25) {
+        response.write(
+          `event: content_block_delta\ndata: ${JSON.stringify({
+            type: 'content_block_delta',
+            index: 0,
+            delta: { type: 'text_delta', text: text.slice(index, index + 25) }
+          })}\n\n`
+        )
+        await sleep(12)
+      }
+      response.write(
+        `event: message_delta\ndata: ${JSON.stringify({
+          type: 'message_delta',
+          delta: { stop_reason: 'end_turn' },
+          usage: { output_tokens: 30 }
+        })}\n\n`
+      )
+      response.write('event: message_stop\ndata: {"type":"message_stop"}\n\n')
+      response.end()
+    })
+    return
+  }
   if (request.method === 'POST' && request.url?.startsWith('/v1/chat/completions')) {
     let body = ''
     request.on('data', (chunk) => (body += chunk))
@@ -397,6 +453,59 @@ try {
     { content: projectContent, path: exportPath }
   )
   console.log('SAVE RESULT:', saved, 'FILE EXISTS:', existsSync(exportPath))
+
+  // Anthropic native adapter (different endpoint, auth and SSE events).
+  await page.evaluate(async () => {
+    await window.axiom.settings.save({
+      provider: 'anthropic',
+      baseUrl: 'http://127.0.0.1:9999/anthropic/v1',
+      model: 'mock-claude',
+      temperature: 0.4,
+      apiKey: 'sk-ant-mock'
+    })
+    await window.__AXIOM__.settings.getState().load()
+    window.__AXIOM__.ai.getState().clearConversation()
+  })
+  await page.waitForTimeout(500)
+  const anthropicComposer = page.locator('.composer-box textarea')
+  await anthropicComposer.fill('Preséntate como Claude de prueba.')
+  await anthropicComposer.press('Enter')
+  await page.waitForFunction(
+    () => {
+      const state = window.__AXIOM__.ai.getState()
+      const last = [...state.messages].reverse().find((message) => message.role === 'assistant')
+      return !state.isStreaming && Boolean(last?.content?.includes('Claude simulado'))
+    },
+    { timeout: 25000 }
+  )
+  const anthropicResult = await page.evaluate(() => {
+    const state = window.__AXIOM__.ai.getState()
+    const last = [...state.messages].reverse().find((message) => message.role === 'assistant')
+    return { content: last?.content, provider: window.__AXIOM__.settings.getState().settings?.provider }
+  })
+  console.log('ANTHROPIC:', anthropicResult)
+  await page.screenshot({ path: 'screenshots/10-anthropic.png' })
+  await page.locator('.title-actions .icon-btn[title="Ajustes de IA"]').click()
+  await page.waitForTimeout(500)
+  await page.screenshot({ path: 'screenshots/11-providers.png' })
+  await page.keyboard.press('Escape')
+  await page.waitForTimeout(300)
+
+  // Local providers must work without an API key.
+  const localCheck = await page.evaluate(async () => {
+    await window.axiom.settings.save({
+      provider: 'ollama',
+      baseUrl: 'http://127.0.0.1:9999/v1',
+      model: 'mock-deepseek',
+      temperature: 0.4,
+      apiKey: null
+    })
+    await window.__AXIOM__.settings.getState().load()
+    const settings = window.__AXIOM__.settings.getState().settings
+    const result = await window.axiom.settings.test()
+    return { ok: result.ok, message: result.message, requiresApiKey: settings?.requiresApiKey }
+  })
+  console.log('LOCAL NO KEY:', localCheck)
 
   // Generate ready-to-open example projects.
   mkdirSync(resolve('examples'), { recursive: true })

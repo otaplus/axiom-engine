@@ -3622,6 +3622,9 @@ textarea {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5px;
+  max-height: 274px;
+  overflow-y: auto;
+  padding-right: 4px;
 }
 
 .provider-card {
@@ -3668,8 +3671,19 @@ textarea {
 
 .provider-deepseek { color: #7dd3fc; background: rgba(56, 189, 248, 0.12); }
 .provider-openai { color: #a7f3d0; background: rgba(52, 211, 153, 0.1); }
+.provider-anthropic { color: #fcd34d; background: rgba(251, 191, 36, 0.1); }
+.provider-google { color: #93c5fd; background: rgba(96, 165, 250, 0.12); }
+.provider-xai { color: #e2e8f0; background: rgba(226, 232, 240, 0.1); }
 .provider-openrouter { color: #ddd6fe; background: rgba(167, 139, 250, 0.12); }
+.provider-groq { color: #fb923c; background: rgba(249, 115, 22, 0.12); }
+.provider-mistral { color: #fde68a; background: rgba(251, 191, 36, 0.1); }
+.provider-together { color: #67e8f9; background: rgba(34, 211, 238, 0.1); }
+.provider-perplexity { color: #5eead4; background: rgba(45, 212, 191, 0.12); }
+.provider-github { color: #e2e8f0; background: rgba(148, 163, 184, 0.12); }
+.provider-huggingface { color: #fde047; background: rgba(250, 204, 21, 0.1); }
 .provider-ollama { color: #fde68a; background: rgba(251, 191, 36, 0.1); }
+.provider-lmstudio { color: #c4b5fd; background: rgba(167, 139, 250, 0.12); }
+.provider-vllm { color: #86efac; background: rgba(74, 222, 128, 0.1); }
 .provider-custom { color: #fda4af; background: rgba(251, 113, 133, 0.1); }
 
 .provider-tag {

@@ -1,7 +1,7 @@
 {
   "name": "axiom-engine",
-  "version": "0.1.0",
-  "description": "Axiom Engine - motor de videojuegos 2D con IA integrada",
+  "version": "0.2.0",
+  "description": "Axiom Engine - motor de videojuegos 2D con IA multi-proveedor integrada",
   "main": "./out/main/index.js",
   "author": "Axiom Engine",
   "license": "MIT",
