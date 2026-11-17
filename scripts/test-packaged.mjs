@@ -42,6 +42,8 @@ try {
   console.log('TITLE:', await page.title())
   console.log('BRIDGE:', await page.evaluate(() => Boolean(window.axiom && window.__AXIOM__)))
   console.log('PROJECT:', await page.evaluate(() => window.__AXIOM__.editor.getState().project.name))
+  const update = await page.evaluate(async () => window.axiom.update.check())
+  console.log('UPDATE:', { status: update.status, current: update.currentVersion, latest: update.latestVersion, message: update.message })
   await page.screenshot({ path: 'screenshots/packaged.png' })
   await page.locator('.run-button').click()
   await page.waitForTimeout(1500)

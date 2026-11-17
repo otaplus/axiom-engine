@@ -297,10 +297,12 @@ La suite actual cubre:
 - Extracción del bloque de acciones del Copiloto.
 - Compilación de todos los scripts de las plantillas.
 
-También existe una prueba end-to-end con Electron y un proveedor de IA simulado en `scripts/e2e.mjs`. Se ejecuta manualmente porque necesita abrir una ventana de Electron:
+También existen pruebas end-to-end con Electron que se ejecutan manualmente porque necesitan abrir una ventana:
 
 ```bash
-node scripts/e2e.mjs
+node scripts/e2e.mjs          # editor, juego, IA y proveedores
+node scripts/test-updater.mjs # actualización simulada, descarga y checksum
+node scripts/test-packaged.mjs # build empaquetada y comprobación de GitHub
 ```
 
 ---
