@@ -251,7 +251,9 @@ export function SettingsModal() {
         <>
           <div className="modal-footer-note">
             <ShieldCheck size={14} />
-            Cifrado local con el almacén seguro de Windows
+            {settings?.hasApiKey && !settings.keyEncrypted && !settings.fromEnvironment
+              ? 'Guardada localmente; el llavero del sistema no está disponible'
+              : 'Cifrado local con el almacén seguro del sistema'}
           </div>
           <div className="modal-footer-actions">
             <button type="button" className="secondary-btn" onClick={() => setModal(null)}>

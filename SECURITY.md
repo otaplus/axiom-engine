@@ -14,6 +14,13 @@ Los scripts se ejecutan dentro del renderer con `new Function`. Tienen acceso al
 
 La CSP bloquea conexiones externas no declaradas y restringe recursos. El motor permite `unsafe-eval` porque necesita compilar los scripts del juego en tiempo de ejecución.
 
+## Actualizaciones
+
+- Las actualizaciones se descargan desde GitHub Releases.
+- El instalador se verifica con el checksum SHA-256 publicado junto al archivo.
+- El instalador de Windows no está firmado digitalmente en esta etapa alfa; Windows SmartScreen puede mostrar un aviso.
+- En Linux, si el llavero del sistema no está disponible, la clave se guarda localmente en texto codificado en lugar de cifrada. Axiom lo indica en los ajustes.
+
 ## Reportar una vulnerabilidad
 
 Abre un issue privado o contacta al mantenedor del repositorio cuando esté publicado. Incluye una descripción, pasos para reproducir y el impacto. No publiques claves ni datos personales.
