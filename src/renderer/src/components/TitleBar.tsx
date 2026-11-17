@@ -1,10 +1,13 @@
 import {
+  ArrowDownToLine,
   Bot,
   ChevronDown,
   Circle,
   FilePlus2,
   FolderOpen,
   HelpCircle,
+  Maximize2,
+  Minus,
   Pause,
   Play,
   Save,
@@ -12,10 +15,12 @@ import {
   Sparkles,
   Square,
   Undo2,
-  Redo2
+  Redo2,
+  X
 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { useEditorStore } from '../store/editor'
+import { useUpdateStore } from '../store/update'
 import { IconButton } from './ui'
 
 interface TitleBarProps {
@@ -58,6 +63,8 @@ export function TitleBar({ onNew, onOpen, onSave }: TitleBarProps) {
   const setBottomTab = useEditorStore((state) => state.setBottomTab)
   const past = useEditorStore((state) => state.past)
   const future = useEditorStore((state) => state.future)
+  const updateStatus = useUpdateStore((state) => state.status)
+  const updateAvailable = ['available', 'downloading', 'ready'].includes(updateStatus)
   const [openMenu, setOpenMenu] = useState<string | null>(null)
   const barRef = useRef<HTMLDivElement>(null)
 
@@ -119,6 +126,8 @@ export function TitleBar({ onNew, onOpen, onSave }: TitleBarProps) {
       { label: 'Ajustes de IA…', onClick: () => setModal('ai-settings') }
     ],
     Ayuda: [
+      { label: 'Buscar actualizaciones…', onClick: () => setModal('updates') },
+      { separator: true },
       { label: 'Atajos de teclado…', onClick: () => setModal('shortcuts') },
       { label: 'Acerca de Axiom…', onClick: () => setModal('about') }
     ]
@@ -206,6 +215,17 @@ export function TitleBar({ onNew, onOpen, onSave }: TitleBarProps) {
           </IconButton>
         </div>
         <div className="title-separator" />
+        {updateAvailable ? (
+          <IconButton
+            title="Hay una actualización disponible"
+            onClick={() => setModal('updates')}
+            className="update-indicator"
+            active={updateStatus === 'ready'}
+          >
+            <ArrowDownToLine size={15} />
+            <span className="update-indicator-dot" />
+          </IconButton>
+        ) : null}
         <IconButton title="Guardar proyecto (Ctrl+S)" onClick={() => onSave(false)}>
           <Save size={15} />
         </IconButton>
@@ -235,6 +255,19 @@ export function TitleBar({ onNew, onOpen, onSave }: TitleBarProps) {
           <Bot size={11} /> ALFA
         </span>
       </div>
+      {window.axiom?.platform === 'linux' ? (
+        <div className="window-controls">
+          <button type="button" title="Minimizar" onClick={() => void window.axiom.windowControls.minimize()}>
+            <Minus size={15} />
+          </button>
+          <button type="button" title="Maximizar" onClick={() => void window.axiom.windowControls.toggleMaximize()}>
+            <Maximize2 size={13} />
+          </button>
+          <button type="button" className="window-close" title="Cerrar" onClick={() => void window.axiom.windowControls.close()}>
+            <X size={15} />
+          </button>
+        </div>
+      ) : null}
     </header>
   )
 }

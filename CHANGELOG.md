@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.3.0 — 2026-11-17
+
+### Añadido
+
+- Instalador de Windows con Inno Setup, instalación por usuario y acceso en el menú.
+- Comprobación automática de actualizaciones en GitHub Releases.
+- Descarga con progreso, verificación SHA-256 e instalación con reinicio automático en Windows.
+- Pantalla de actualizaciones y aviso flotante cuando hay una versión nueva.
+- Soporte Linux: ventana sin marco con controles propios, paquete `tar.gz` y script `install-linux.sh`.
+- Enlaces de la aplicación a la release y al repositorio.
+- Comandos `dist:win` y `dist:linux`.
+
+### Cambiado
+
+- La build de Windows ahora incluye instalador además del ZIP portable.
+- La versión actual se lee dinámicamente en la barra de estado.
+- Documentación de instalación, Linux y autoactualización.
+
 ## 0.2.0 — 2026-11-17
 
 ### Añadido

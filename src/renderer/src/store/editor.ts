@@ -5,7 +5,15 @@ import { normalizeProject, parseProject, projectStats } from '../engine/projectI
 import type { Asset, NodeProps, NodeType, Project, ProjectSettings, Scene, SceneNode } from '../engine/types'
 import { createTemplate, type TemplateId } from '../templates'
 
-export type ModalKind = 'new-project' | 'ai-settings' | 'shortcuts' | 'about' | 'script' | 'project-settings' | null
+export type ModalKind =
+  | 'new-project'
+  | 'ai-settings'
+  | 'shortcuts'
+  | 'about'
+  | 'script'
+  | 'project-settings'
+  | 'updates'
+  | null
 export type BottomTab = 'assets' | 'files' | 'console'
 
 interface Snapshot {

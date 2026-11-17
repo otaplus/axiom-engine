@@ -3,6 +3,7 @@ import { Component, useEffect, useRef, useState, type ErrorInfo, type ReactNode 
 import { initAIListeners } from './store/ai'
 import { activeScene, projectMetrics, useEditorStore } from './store/editor'
 import { providerName, useSettingsStore } from './store/settings'
+import { useUpdateStore } from './store/update'
 import { serializeProject } from './engine/projectIO'
 import { AboutModal } from './components/AboutModal'
 import { BottomPanel } from './components/BottomPanel'
@@ -15,6 +16,8 @@ import { SettingsModal } from './components/SettingsModal'
 import { ShortcutsModal } from './components/ShortcutsModal'
 import { TemplateModal } from './components/TemplateModal'
 import { TitleBar } from './components/TitleBar'
+import { UpdateBanner } from './components/UpdateBanner'
+import { UpdateModal } from './components/UpdateModal'
 import { Viewport } from './components/Viewport'
 import { Kbd } from './components/ui'
 
@@ -67,7 +70,7 @@ export default function App() {
   const cameraZoom = useEditorStore((state) => state.camera.zoom)
   const autosaveTimer = useRef<number | null>(null)
   const [toast, setToast] = useState<{ tone: 'ok' | 'error'; message: string } | null>(null)
-  const [appVersion, setAppVersion] = useState('0.2.0')
+  const [appVersion, setAppVersion] = useState('0.3.0')
   const toastTimer = useRef<number | null>(null)
 
   const showToast = (tone: 'ok' | 'error', message: string) => {
@@ -138,8 +141,12 @@ export default function App() {
   useEffect(() => {
     void loadSettings()
     void window.axiom?.app.versions().then((versions) => setAppVersion(versions.app))
-    const cleanup = initAIListeners()
-    return cleanup
+    const cleanupAI = initAIListeners()
+    const cleanupUpdate = useUpdateStore.getState().init()
+    return () => {
+      cleanupAI()
+      cleanupUpdate()
+    }
   }, [loadSettings])
 
   useEffect(() => {
@@ -344,6 +351,8 @@ export default function App() {
         {modal === 'about' ? <AboutModal /> : null}
         {modal === 'project-settings' ? <ProjectSettingsModal /> : null}
         {modal === 'script' ? <ScriptModal /> : null}
+        {modal === 'updates' ? <UpdateModal /> : null}
+        <UpdateBanner />
     </div>
   )
 }

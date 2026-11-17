@@ -8,6 +8,7 @@ release/
 /playwright-report/
 .test-user-data/
 .test-user-data-packaged/
+.test-update-user-data/
 electron-out.log
 electron-err.log
 *.log

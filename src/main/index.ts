@@ -3,6 +3,14 @@ import { readFile, writeFile } from 'node:fs/promises'
 import { basename, join } from 'node:path'
 import { abortAll, abortChat, listModels, streamChat, testConnection } from './ai'
 import { getPublicSettings, saveSettings } from './settings'
+import {
+  checkForUpdates,
+  downloadUpdate,
+  getUpdateState,
+  installUpdate,
+  openReleasePage,
+  startAutoUpdater
+} from './updater'
 
 if (process.env.AXIOM_USER_DATA) {
   app.setPath('userData', process.env.AXIOM_USER_DATA)
@@ -14,6 +22,7 @@ if (process.env.AXIOM_NO_SANDBOX === '1') {
 let mainWindow: BrowserWindow | null = null
 
 function createWindow(): void {
+  const isLinux = process.platform === 'linux'
   mainWindow = new BrowserWindow({
     width: 1500,
     height: 940,
@@ -23,12 +32,17 @@ function createWindow(): void {
     backgroundColor: '#070a11',
     title: 'Axiom Engine',
     icon: app.isPackaged ? join(process.resourcesPath, 'icon.png') : join(__dirname, '../../build/icon.png'),
-    titleBarStyle: 'hidden',
-    titleBarOverlay: {
-      color: '#070a11',
-      symbolColor: '#94a3b8',
-      height: 40
-    },
+    frame: isLinux ? false : true,
+    ...(process.platform === 'win32'
+      ? {
+          titleBarStyle: 'hidden' as const,
+          titleBarOverlay: {
+            color: '#070a11',
+            symbolColor: '#94a3b8',
+            height: 40
+          }
+        }
+      : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false,
@@ -75,6 +89,26 @@ function registerIpc(): void {
   ipcMain.handle('ai:abort', (_event, requestId: string) => {
     abortChat(requestId)
     return { ok: true }
+  })
+
+  ipcMain.handle('update:get-state', () => getUpdateState())
+  ipcMain.handle('update:check', () => checkForUpdates(true))
+  ipcMain.handle('update:download', () => downloadUpdate())
+  ipcMain.handle('update:install', () => installUpdate())
+  ipcMain.handle('update:open-release', () => openReleasePage())
+
+  ipcMain.handle('window:minimize', (event) => {
+    BrowserWindow.fromWebContents(event.sender)?.minimize()
+  })
+  ipcMain.handle('window:toggle-maximize', (event) => {
+    const window = BrowserWindow.fromWebContents(event.sender)
+    if (!window) return false
+    if (window.isMaximized()) window.unmaximize()
+    else window.maximize()
+    return window.isMaximized()
+  })
+  ipcMain.handle('window:close', (event) => {
+    BrowserWindow.fromWebContents(event.sender)?.close()
   })
 
   ipcMain.handle('project:open', async () => {
@@ -148,6 +182,7 @@ if (!hasLock) {
   app.whenReady().then(() => {
     registerIpc()
     createWindow()
+    startAutoUpdater()
     app.on('activate', () => {
       if (BrowserWindow.getAllWindows().length === 0) createWindow()
     })

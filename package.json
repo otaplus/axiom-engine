@@ -1,9 +1,10 @@
 {
   "name": "axiom-engine",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Axiom Engine - motor de videojuegos 2D con IA multi-proveedor integrada",
   "main": "./out/main/index.js",
   "author": "Axiom Engine",
+  "desktopName": "axiom-engine.desktop",
   "license": "MIT",
   "private": true,
   "engines": {
@@ -28,6 +29,14 @@
       }
     ],
     "asar": true,
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "otaplus",
+        "repo": "axiom-engine",
+        "releaseType": "release"
+      }
+    ],
     "win": {
       "target": [
         {
@@ -36,6 +45,19 @@
         }
       ],
       "icon": "build/icon.ico",
+      "artifactName": "Axiom-Engine-${version}-${arch}.${ext}"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "tar.gz",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "build/icon.png",
+      "category": "Development",
+      "synopsis": "Motor de videojuegos 2D con copiloto IA",
+      "description": "Axiom Engine: editor visual y runtime 2D con Copiloto IA multi-proveedor.",
       "artifactName": "Axiom-Engine-${version}-${arch}.${ext}"
     }
   },
@@ -46,8 +68,11 @@
     "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.web.json",
     "test": "vitest run --pool=threads",
     "test:watch": "vitest --pool=threads",
-    "dist": "electron-vite build && electron-builder --win",
-    "dist:dir": "electron-vite build && electron-builder --win dir"
+    "package:win": "electron-vite build && electron-builder --win zip --publish never",
+    "dist:win": "npm run package:win && node scripts/build-installer.mjs",
+    "dist:linux": "electron-vite build && electron-builder --linux --publish never",
+    "dist": "npm run dist:win",
+    "dist:dir": "electron-vite build && electron-builder --win dir --publish never"
   },
   "dependencies": {},
   "devDependencies": {

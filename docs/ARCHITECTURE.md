@@ -138,6 +138,25 @@ Tres stores de Zustand:
 
 El autoguardado copia proyecto, escena activa y cámara a `localStorage` con un debounce de 550 ms. Los proyectos abiertos desde disco se guardan como JSON validado.
 
+## Actualizaciones
+
+El actualizador es propio, no usa `electron-updater`:
+
+1. `src/main/updater.ts` consulta `https://api.github.com/repos/otaplus/axiom-engine/releases/latest`.
+2. Compara la etiqueta de la release con `app.getVersion()`.
+3. Elige el asset de la plataforma: `Setup.exe` en Windows o `tar.gz` en Linux.
+4. Descarga el archivo en `userData/updates`, informando del progreso por IPC.
+5. Verifica el asset `.sha256` antes de marcarlo como listo.
+6. En Windows ejecuta el instalador de Inno Setup en modo silencioso, cierra Axiom y el instalador vuelve a abrir la aplicación al terminar. En Linux abre la carpeta para instalación manual.
+
+La interfaz escucha los eventos `update:status` y muestra el aviso o la ventana de actualizaciones. En desarrollo solo se permite apuntar a un servidor de actualizaciones con `AXIOM_UPDATE_API`; en la app empaquetada se consulta GitHub automáticamente tras unos segundos.
+
+## Plataformas
+
+- **Windows**: instalador Inno Setup por usuario, ZIP portable y controles nativos de ventana.
+- **Linux**: ventana Electron sin marco con controles propios, paquete `tar.gz` y script de instalación que crea el lanzador de escritorio. El autoactualizador descarga el paquete, pero la sustitución es manual.
+- **macOS**: no se distribuye todavía.
+
 ## Seguridad
 
 - `nodeIntegration: false`, `contextIsolation: true`.

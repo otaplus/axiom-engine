@@ -1,4 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron'
+import type { UpdateState } from '../shared/update'
 
 export interface PublicSettings {
   provider:
@@ -29,6 +30,7 @@ export interface PublicSettings {
 }
 
 export interface AxiomBridge {
+  platform: string
   ai: {
     start: (request: {
       requestId: string
@@ -62,6 +64,19 @@ export interface AxiomBridge {
     } | null>
     saveAs: (payload: { content: string; suggestedName?: string }) => Promise<{ path: string; name: string } | null>
   }
+  update: {
+    getState: () => Promise<UpdateState>
+    check: () => Promise<UpdateState>
+    download: () => Promise<UpdateState>
+    install: () => Promise<UpdateState>
+    openRelease: () => Promise<void>
+    onStatus: (callback: (state: UpdateState) => void) => () => void
+  }
+  windowControls: {
+    minimize: () => Promise<void>
+    toggleMaximize: () => Promise<boolean>
+    close: () => Promise<void>
+  }
   app: {
     openExternal: (url: string) => Promise<{ ok: boolean }>
     versions: () => Promise<{ app: string; electron: string; chrome: string; node: string }>
@@ -75,6 +90,7 @@ function subscribe<T>(channel: string, callback: (payload: T) => void): () => vo
 }
 
 const bridge: AxiomBridge = {
+  platform: process.platform,
   ai: {
     start: (request) => ipcRenderer.invoke('ai:start', request),
     abort: (requestId) => ipcRenderer.invoke('ai:abort', requestId),
@@ -93,6 +109,19 @@ const bridge: AxiomBridge = {
     open: () => ipcRenderer.invoke('project:open'),
     save: (payload) => ipcRenderer.invoke('project:save', payload),
     saveAs: (payload) => ipcRenderer.invoke('project:saveAs', payload)
+  },
+  update: {
+    getState: () => ipcRenderer.invoke('update:get-state'),
+    check: () => ipcRenderer.invoke('update:check'),
+    download: () => ipcRenderer.invoke('update:download'),
+    install: () => ipcRenderer.invoke('update:install'),
+    openRelease: () => ipcRenderer.invoke('update:open-release'),
+    onStatus: (callback) => subscribe('update:status', callback)
+  },
+  windowControls: {
+    minimize: () => ipcRenderer.invoke('window:minimize'),
+    toggleMaximize: () => ipcRenderer.invoke('window:toggle-maximize'),
+    close: () => ipcRenderer.invoke('window:close')
   },
   app: {
     openExternal: (url) => ipcRenderer.invoke('app:openExternal', url),

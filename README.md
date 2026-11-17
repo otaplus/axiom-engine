@@ -10,14 +10,14 @@
 </p>
 
 <p align="center">
-  <img alt="Estado" src="https://img.shields.io/badge/estado-alfa%200.2.0-f59e0b" />
-  <img alt="Plataforma" src="https://img.shields.io/badge/plataforma-Windows%2010%2F11-38bdf8" />
+  <img alt="Estado" src="https://img.shields.io/badge/estado-alfa%200.3.0-f59e0b" />
+  <img alt="Plataforma" src="https://img.shields.io/badge/plataforma-Windows%20%7C%20Linux-38bdf8" />
   <img alt="Licencia" src="https://img.shields.io/badge/licencia-MIT-34d399" />
 </p>
 
 <p align="center">
   <a href="https://github.com/otaplus/axiom-engine">Repositorio</a> ·
-  <a href="https://github.com/otaplus/axiom-engine/releases/tag/v0.2.0">Descargar v0.2.0</a> ·
+  <a href="https://github.com/otaplus/axiom-engine/releases/tag/v0.3.0">Descargar v0.3.0</a> ·
   <a href="docs/SCRIPTING.md">API de scripting</a> ·
   <a href="docs/AI_AGENT.md">Protocolo del agente</a>
 </p>
@@ -38,7 +38,9 @@
 | Assets | Biblioteca de emojis, formas vectoriales, monedas dibujadas por código, importación de imágenes y assets creados por IA |
 | IA | Chat con DeepSeek, Claude, Gemini, Groq, Mistral y más; streaming, contexto del proyecto, modo agente y deshacer |
 | Proyecto | Guardar/abrir `.axiom`, autoguardado local, múltiples escenas, escena principal y exportación portable |
-| Distribución | Build de Windows en ZIP, icono propio y aplicación empaquetada con Electron |
+| Distribución | Instalador de Windows, ZIP portable, paquete Linux `tar.gz`, icono propio y aplicación Electron |
+| Actualizaciones | Comprobación automática de GitHub Releases, descarga con progreso, verificación SHA-256 e instalación desde la app |
+| Linux | Ventana sin marco con controles propios, paquete `tar.gz` y script de instalación con acceso en el menú |
 
 ### Capturas
 
@@ -58,18 +60,34 @@
 
 ## Inicio rápido
 
-### Opción A — Aplicación empaquetada (Windows)
+### Opción A — Instalador de Windows
 
-1. Descarga [Axiom-Engine-0.2.0-x64.zip](https://github.com/otaplus/axiom-engine/releases/download/v0.2.0/Axiom-Engine-0.2.0-x64.zip) o usa el ZIP local `release/Axiom-Engine-0.2.0-x64.zip`. Descomprímelo.
-2. Ejecuta `Axiom Engine.exe`.
-3. Abre **Copiloto → Conectar** y pega una clave API de [DeepSeek](https://platform.deepseek.com/api_keys).
-4. Escribe lo que quieres crear y pulsa **Enter**.
+1. Descarga [Axiom-Engine-0.3.0-Setup.exe](https://github.com/otaplus/axiom-engine/releases/download/v0.3.0/Axiom-Engine-0.3.0-Setup.exe).
+2. Ejecuta el instalador y sigue el asistente. Se instala por usuario, sin necesidad de administrador.
+3. Abre **Copiloto → Conectar** y configura tu proveedor de IA.
+4. Axiom buscará actualizaciones en GitHub al iniciarse; también puedes hacerlo desde **Ayuda → Buscar actualizaciones…**.
 
-> La aplicación no está firmada digitalmente en esta etapa alfa. Windows SmartScreen puede pedir confirmación la primera vez. El checksum SHA-256 se publica junto al ZIP en la release.
+También está disponible el [ZIP portable](https://github.com/otaplus/axiom-engine/releases/download/v0.3.0/Axiom-Engine-0.3.0-x64.zip) si prefieres no instalar.
 
-### Opción B — Desarrollo
+> La aplicación no está firmada digitalmente en esta etapa alfa. Windows SmartScreen puede pedir confirmación la primera vez. Los checksums SHA-256 se publican junto a cada archivo.
 
-Requisitos: **Node.js 20 o superior** (probado con Node 24) y **Windows 10/11**.
+### Opción B — Linux
+
+1. Descarga [Axiom-Engine-0.3.0-x64.tar.gz](https://github.com/otaplus/axiom-engine/releases/download/v0.3.0/Axiom-Engine-0.3.0-x64.tar.gz) y el [instalador de Linux](https://github.com/otaplus/axiom-engine/releases/download/v0.3.0/install-linux.sh).
+2. Ejecuta:
+
+```bash
+chmod +x install-linux.sh
+./install-linux.sh 0.3.0
+```
+
+El script instala en `~/.local/share/axiom-engine`, añade el lanzador al menú de aplicaciones y crea `~/.local/bin/axiom-engine`. En Linux el actualizador descarga el paquete nuevo; su instalación es manual.
+
+Requisitos habituales en Ubuntu/Fedora: `libgtk-3`, `libnss3`, `libasound2`, `libgbm1` y `libxshmfence1`. Si usas un entorno mínimo, revisa las dependencias de Electron.
+
+### Opción C — Desarrollo
+
+Requisitos: **Node.js 20 o superior** (probado con Node 24). El desarrollo funciona en Windows y Linux.
 
 ```bash
 npm install
@@ -86,14 +104,17 @@ npm install
 ### Comandos
 
 ```bash
-npm run dev        # editor en modo desarrollo
-npm run build      # compila main, preload y renderer
-npm start          # previsualiza la build
-npm run typecheck  # TypeScript estricto
-npm test           # tests del motor y del parser IA
-npm run dist       # genera el ZIP de Windows en release/
-npm run dist:dir   # genera release/win-unpacked sin comprimir
+npm run dev         # editor en modo desarrollo
+npm run build       # compila main, preload y renderer
+npm start           # previsualiza la build
+npm run typecheck   # TypeScript estricto
+npm test            # tests del motor y del parser IA
+npm run dist:win    # ZIP + instalador de Windows (requiere Inno Setup 6)
+npm run dist:linux  # paquete Linux tar.gz en release/
+npm run dist:dir    # genera release/win-unpacked sin comprimir
 ```
+
+Para compilar el instalador de Windows en desarrollo se necesita [Inno Setup 6](https://jrsoftware.org/isinfo.php). El CI de GitHub no está incluido en esta versión.
 
 ---
 
@@ -145,6 +166,16 @@ Los modelos son solo un punto de partida: puedes escribir otro identificador en 
 También se pueden usar las variables de entorno `DEEPSEEK_API_KEY` u `OPENAI_API_KEY` como clave de respaldo.
 
 La clave se guarda cifrada con el almacén seguro del sistema (`safeStorage`) y **nunca se envía al renderer**. Las peticiones salen del proceso principal de Electron directamente al proveedor elegido. No hay telemetría.
+
+### Actualizaciones automáticas
+
+Axiom comprueba **GitHub Releases** unos segundos después de abrirse. Si hay una versión nueva:
+
+1. Muestra un aviso con la versión disponible.
+2. Descarga el instalador desde la release con progreso y verificación SHA-256.
+3. Al pulsar **Reiniciar e instalar**, cierra Axiom, instala la nueva versión en el mismo directorio y vuelve a abrir la app.
+
+También puedes forzar la comprobación desde **Ayuda → Buscar actualizaciones…**. En Linux el actualizador descarga el `.tar.gz` y abre la carpeta para que lo instales manualmente con el script de Linux. Las releases deben publicarse como versión estable (no como *pre-release*) para que el actualizador las detecte.
 
 ---
 
@@ -221,7 +252,7 @@ El runtime expone `Game`, `Input`, `print`, `rand`, `clamp`, `lerp`, `dist`, `Ve
 
 ## Estado del proyecto
 
-Axiom 0.2.0 es una **alfa funcional**. Es un motor real y jugable, pero no pretende sustituir todavía a Godot en proyectos grandes.
+Axiom 0.3.0 es una **alfa funcional**. Es un motor real y jugable, pero no pretende sustituir todavía a Godot en proyectos grandes.
 
 ### Incluido
 
@@ -229,7 +260,8 @@ Axiom 0.2.0 es una **alfa funcional**. Es un motor real y jugable, pero no prete
 - Dos juegos de ejemplo jugables y una plantilla vacía.
 - Física, cámara, HUD, partículas, sonido sintetizado y scripts.
 - IA con contexto, streaming, agente y deshacer.
-- Empaquetado Windows y aplicación portable.
+- Instalador de Windows, autoactualización desde GitHub y paquete Linux.
+- Aplicación portable en ZIP.
 
 ### Próximos pasos
 
@@ -237,15 +269,16 @@ Axiom 0.2.0 es una **alfa funcional**. Es un motor real y jugable, pero no prete
 - Modo 3D básico.
 - Editor de animaciones y tilemaps.
 - Depurador visual, breakpoints y perfilador.
-- Publicación de nuevas versiones y releases en GitHub.
+- AppImage y paquetes `.deb` para Linux, además del `tar.gz` actual.
 
 ### Limitaciones conocidas
 
 - Solo 2D; la pestaña 3D está marcada como “pronto”.
 - No hay editor de audio ni importación de música.
 - Los scripts se ejecutan localmente con el runtime del editor; están pensados para proyectos propios.
-- El instalador NSIS no forma parte de esta entrega; se distribuye un ZIP portable.
-- El instalador de Windows no está firmado.
+- En Linux se distribuye un `tar.gz` portable con script de instalación; aún no hay AppImage ni `.deb`.
+- La autoactualización instala en Windows. En Linux descarga el paquete y la instalación es manual.
+- El instalador de Windows no está firmado digitalmente.
 
 ---
 
