@@ -1,0 +1,1633 @@
+{
+  "format": "axiom-project",
+  "version": 1,
+  "name": "Bosque de Chispas",
+  "settings": {
+    "width": 960,
+    "height": 540,
+    "gravity": 1750,
+    "background": "#091c20",
+    "backgroundStyle": "stars",
+    "accent": "#4ade80",
+    "pixelArt": false,
+    "showFps": false
+  },
+  "assets": [
+    {
+      "id": "hero",
+      "name": "Héroe",
+      "kind": "emoji",
+      "glyph": "🦊",
+      "size": 96
+    },
+    {
+      "id": "robot",
+      "name": "Robot",
+      "kind": "emoji",
+      "glyph": "🤖",
+      "size": 96
+    },
+    {
+      "id": "frog",
+      "name": "Rana",
+      "kind": "emoji",
+      "glyph": "🐸",
+      "size": 96
+    },
+    {
+      "id": "ghost",
+      "name": "Fantasma",
+      "kind": "emoji",
+      "glyph": "👻",
+      "size": 96
+    },
+    {
+      "id": "alien",
+      "name": "Alien",
+      "kind": "emoji",
+      "glyph": "👾",
+      "size": 96
+    },
+    {
+      "id": "ninja",
+      "name": "Ninja",
+      "kind": "emoji",
+      "glyph": "🥋",
+      "size": 96
+    },
+    {
+      "id": "wizard",
+      "name": "Mago",
+      "kind": "emoji",
+      "glyph": "🧙",
+      "size": 96
+    },
+    {
+      "id": "knight",
+      "name": "Caballero",
+      "kind": "emoji",
+      "glyph": "🛡️",
+      "size": 96
+    },
+    {
+      "id": "ship",
+      "name": "Nave",
+      "kind": "emoji",
+      "glyph": "🚀",
+      "size": 96
+    },
+    {
+      "id": "ufo",
+      "name": "OVNI",
+      "kind": "emoji",
+      "glyph": "🛸",
+      "size": 96
+    },
+    {
+      "id": "slime",
+      "name": "Slime",
+      "kind": "vector",
+      "variant": "slime",
+      "color": "#4ade80",
+      "color2": "#15803d",
+      "size": 96
+    },
+    {
+      "id": "bat",
+      "name": "Murciélago",
+      "kind": "emoji",
+      "glyph": "🦇",
+      "size": 96
+    },
+    {
+      "id": "crab",
+      "name": "Cangrejo",
+      "kind": "emoji",
+      "glyph": "🦀",
+      "size": 96
+    },
+    {
+      "id": "bee",
+      "name": "Abeja",
+      "kind": "emoji",
+      "glyph": "🐝",
+      "size": 96
+    },
+    {
+      "id": "dragon",
+      "name": "Dragón",
+      "kind": "emoji",
+      "glyph": "🐉",
+      "size": 96
+    },
+    {
+      "id": "zombie",
+      "name": "Zombi",
+      "kind": "emoji",
+      "glyph": "🧟",
+      "size": 96
+    },
+    {
+      "id": "gem",
+      "name": "Gema",
+      "kind": "emoji",
+      "glyph": "💎",
+      "size": 96
+    },
+    {
+      "id": "star",
+      "name": "Estrella",
+      "kind": "emoji",
+      "glyph": "⭐",
+      "size": 96
+    },
+    {
+      "id": "heart",
+      "name": "Corazón",
+      "kind": "emoji",
+      "glyph": "❤️",
+      "size": 96
+    },
+    {
+      "id": "key",
+      "name": "Llave",
+      "kind": "emoji",
+      "glyph": "🗝️",
+      "size": 96
+    },
+    {
+      "id": "bomb",
+      "name": "Bomba",
+      "kind": "emoji",
+      "glyph": "💣",
+      "size": 96
+    },
+    {
+      "id": "potion",
+      "name": "Poción",
+      "kind": "emoji",
+      "glyph": "🧪",
+      "size": 96
+    },
+    {
+      "id": "flag",
+      "name": "Meta",
+      "kind": "emoji",
+      "glyph": "🏁",
+      "size": 96
+    },
+    {
+      "id": "fire",
+      "name": "Fuego",
+      "kind": "emoji",
+      "glyph": "🔥",
+      "size": 96
+    },
+    {
+      "id": "ice",
+      "name": "Hielo",
+      "kind": "emoji",
+      "glyph": "❄️",
+      "size": 96
+    },
+    {
+      "id": "bolt",
+      "name": "Rayo",
+      "kind": "emoji",
+      "glyph": "⚡",
+      "size": 96
+    },
+    {
+      "id": "mushroom",
+      "name": "Seta",
+      "kind": "emoji",
+      "glyph": "🍄",
+      "size": 96
+    },
+    {
+      "id": "flower",
+      "name": "Flor",
+      "kind": "emoji",
+      "glyph": "🌸",
+      "size": 96
+    },
+    {
+      "id": "cactus",
+      "name": "Cactus",
+      "kind": "emoji",
+      "glyph": "🌵",
+      "size": 96
+    },
+    {
+      "id": "rock",
+      "name": "Roca",
+      "kind": "emoji",
+      "glyph": "🗿",
+      "size": 96
+    },
+    {
+      "id": "cloud",
+      "name": "Nube",
+      "kind": "emoji",
+      "glyph": "☁️",
+      "size": 96
+    },
+    {
+      "id": "tree",
+      "name": "Árbol",
+      "kind": "emoji",
+      "glyph": "🌳",
+      "size": 96
+    },
+    {
+      "id": "apple",
+      "name": "Manzana",
+      "kind": "emoji",
+      "glyph": "🍎",
+      "size": 96
+    },
+    {
+      "id": "skull",
+      "name": "Calavera",
+      "kind": "emoji",
+      "glyph": "💀",
+      "size": 96
+    },
+    {
+      "id": "portal",
+      "name": "Portal",
+      "kind": "emoji",
+      "glyph": "🌀",
+      "size": 96
+    },
+    {
+      "id": "spark",
+      "name": "Chispa",
+      "kind": "emoji",
+      "glyph": "✨",
+      "size": 96
+    },
+    {
+      "id": "magnet",
+      "name": "Imán",
+      "kind": "emoji",
+      "glyph": "🧲",
+      "size": 96
+    },
+    {
+      "id": "shield",
+      "name": "Escudo",
+      "kind": "emoji",
+      "glyph": "🛡️",
+      "size": 96
+    },
+    {
+      "id": "target",
+      "name": "Diana",
+      "kind": "emoji",
+      "glyph": "🎯",
+      "size": 96
+    },
+    {
+      "id": "sword",
+      "name": "Espada",
+      "kind": "emoji",
+      "glyph": "⚔️",
+      "size": 96
+    },
+    {
+      "id": "crown",
+      "name": "Corona",
+      "kind": "emoji",
+      "glyph": "👑",
+      "size": 96
+    },
+    {
+      "id": "coin",
+      "name": "Moneda de oro",
+      "kind": "vector",
+      "variant": "coin",
+      "color": "#fbbf24",
+      "color2": "#f59e0b",
+      "size": 96
+    },
+    {
+      "id": "vector_heart",
+      "name": "Corazón vectorial",
+      "kind": "vector",
+      "variant": "heart",
+      "color": "#fb7185",
+      "color2": "#be123c",
+      "size": 96
+    },
+    {
+      "id": "vector_star",
+      "name": "Estrella dorada",
+      "kind": "vector",
+      "variant": "star",
+      "color": "#fde047",
+      "color2": "#f59e0b",
+      "size": 96
+    },
+    {
+      "id": "platform",
+      "name": "Plataforma neón",
+      "kind": "shape",
+      "shape": "rect",
+      "color": "#1e293b",
+      "color2": "#38bdf8",
+      "size": 96
+    },
+    {
+      "id": "orb",
+      "name": "Orbe",
+      "kind": "shape",
+      "shape": "circle",
+      "color": "#22d3ee",
+      "color2": "#6366f1",
+      "size": 96
+    },
+    {
+      "id": "triangle",
+      "name": "Triángulo",
+      "kind": "shape",
+      "shape": "triangle",
+      "color": "#f472b6",
+      "color2": "#7c3aed",
+      "size": 96
+    },
+    {
+      "id": "star_shape",
+      "name": "Estrella vectorial",
+      "kind": "shape",
+      "shape": "star",
+      "color": "#facc15",
+      "color2": "#f97316",
+      "size": 96
+    },
+    {
+      "id": "hex",
+      "name": "Hexágono",
+      "kind": "shape",
+      "shape": "hexagon",
+      "color": "#34d399",
+      "color2": "#0ea5e9",
+      "size": 96
+    },
+    {
+      "id": "diamond",
+      "name": "Rombo",
+      "kind": "shape",
+      "shape": "diamond",
+      "color": "#a78bfa",
+      "color2": "#ec4899",
+      "size": 96
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene_5ed5e55844",
+      "name": "Bosque",
+      "settings": {
+        "background": "#091c20",
+        "style": "stars"
+      },
+      "root": {
+        "id": "node_5bd023219d",
+        "name": "Bosque",
+        "type": "Node2D",
+        "x": 0,
+        "y": 0,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1,
+        "visible": true,
+        "zIndex": 0,
+        "props": {},
+        "children": [
+          {
+            "id": "node_d3cc2eaf95",
+            "name": "Fondo",
+            "type": "Node2D",
+            "x": 0,
+            "y": 0,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": -10,
+            "props": {},
+            "children": [
+              {
+                "id": "node_4afdce7d5e",
+                "name": "Luna",
+                "type": "Sprite2D",
+                "x": 300,
+                "y": -170,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "assetId": "spark",
+                  "width": 150,
+                  "height": 150,
+                  "tint": "#ffffff",
+                  "opacity": 0.45,
+                  "flipX": false,
+                  "flipY": false,
+                  "glow": 40,
+                  "glowColor": "#a7f3d0",
+                  "shadow": false
+                },
+                "children": []
+              },
+              {
+                "id": "node_fb033d61d3",
+                "name": "Nube lejana",
+                "type": "Sprite2D",
+                "x": -340,
+                "y": -150,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "assetId": "cloud",
+                  "width": 190,
+                  "height": 90,
+                  "tint": "#ffffff",
+                  "opacity": 0.18,
+                  "flipX": false,
+                  "flipY": false,
+                  "glow": 0,
+                  "shadow": false
+                },
+                "children": []
+              },
+              {
+                "id": "node_5ee9a1382e",
+                "name": "Nube alta",
+                "type": "Sprite2D",
+                "x": 80,
+                "y": -215,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "assetId": "cloud",
+                  "width": 130,
+                  "height": 60,
+                  "tint": "#ffffff",
+                  "opacity": 0.14,
+                  "flipX": false,
+                  "flipY": false,
+                  "glow": 0,
+                  "shadow": false
+                },
+                "children": []
+              },
+              {
+                "id": "node_a42b759424",
+                "name": "Árbol izquierdo",
+                "type": "Sprite2D",
+                "x": -590,
+                "y": 140,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "assetId": "tree",
+                  "width": 150,
+                  "height": 150,
+                  "tint": "#ffffff",
+                  "opacity": 0.5,
+                  "flipX": false,
+                  "flipY": false,
+                  "glow": 0,
+                  "shadow": false
+                },
+                "children": []
+              },
+              {
+                "id": "node_ac7338d3c1",
+                "name": "Árbol medio",
+                "type": "Sprite2D",
+                "x": -460,
+                "y": 175,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "assetId": "tree",
+                  "width": 110,
+                  "height": 110,
+                  "tint": "#ffffff",
+                  "opacity": 0.32,
+                  "flipX": false,
+                  "flipY": false,
+                  "glow": 0,
+                  "shadow": false
+                },
+                "children": []
+              },
+              {
+                "id": "node_fdf44caa08",
+                "name": "Árbol derecho",
+                "type": "Sprite2D",
+                "x": 540,
+                "y": 155,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "assetId": "tree",
+                  "width": 135,
+                  "height": 135,
+                  "tint": "#ffffff",
+                  "opacity": 0.38,
+                  "flipX": false,
+                  "flipY": false,
+                  "glow": 0,
+                  "shadow": false
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "node_dfdf4ccd41",
+            "name": "Cámara",
+            "type": "Camera2D",
+            "x": 0,
+            "y": 0,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 0,
+            "props": {
+              "active": true,
+              "zoom": 1,
+              "smoothing": 4.5,
+              "target": "Jugador",
+              "offsetX": 0,
+              "offsetY": -20
+            },
+            "children": []
+          },
+          {
+            "id": "node_7c69f936c6",
+            "name": "Suelo",
+            "type": "StaticBody2D",
+            "x": 0,
+            "y": 260,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 0,
+            "props": {
+              "width": 1400,
+              "height": 60,
+              "color": "#10251f",
+              "edgeColor": "#34d399",
+              "oneWay": false
+            },
+            "children": []
+          },
+          {
+            "id": "node_c4c9c3360c",
+            "name": "Plataforma oeste",
+            "type": "StaticBody2D",
+            "x": -520,
+            "y": 125,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 0,
+            "props": {
+              "width": 210,
+              "height": 24,
+              "color": "#142a27",
+              "edgeColor": "#4ade80",
+              "oneWay": true
+            },
+            "children": []
+          },
+          {
+            "id": "node_51c68dc781",
+            "name": "Plataforma baja",
+            "type": "StaticBody2D",
+            "x": -265,
+            "y": 165,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 0,
+            "props": {
+              "width": 220,
+              "height": 26,
+              "color": "#142a27",
+              "edgeColor": "#4ade80",
+              "oneWay": false
+            },
+            "children": []
+          },
+          {
+            "id": "node_cef214b648",
+            "name": "Plataforma media",
+            "type": "StaticBody2D",
+            "x": 40,
+            "y": 80,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 0,
+            "props": {
+              "width": 220,
+              "height": 26,
+              "color": "#142a27",
+              "edgeColor": "#4ade80",
+              "oneWay": true
+            },
+            "children": []
+          },
+          {
+            "id": "node_9eb877baef",
+            "name": "Plataforma este",
+            "type": "StaticBody2D",
+            "x": 360,
+            "y": 145,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 0,
+            "props": {
+              "width": 205,
+              "height": 26,
+              "color": "#142a27",
+              "edgeColor": "#4ade80",
+              "oneWay": true
+            },
+            "children": []
+          },
+          {
+            "id": "node_7f7350e6e6",
+            "name": "Plataforma alta",
+            "type": "StaticBody2D",
+            "x": 570,
+            "y": 35,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 0,
+            "props": {
+              "width": 190,
+              "height": 24,
+              "color": "#142a27",
+              "edgeColor": "#4ade80",
+              "oneWay": true
+            },
+            "children": []
+          },
+          {
+            "id": "node_a37646ef47",
+            "name": "Jugador",
+            "type": "CharacterBody2D",
+            "x": -380,
+            "y": 170,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 5,
+            "props": {
+              "width": 34,
+              "height": 48,
+              "color": "#4ade80",
+              "bodyVisual": "none",
+              "group": "player"
+            },
+            "script": "_ready() {\n  this.speed = 315\n  this.jump_force = 735\n  this.coyote = 0\n  this.buffer = 0\n  this.invuln = 0\n  this.facing = 1\n  Game.on('damage', () => this.hurt())\n}\n\n_physics_process(dt) {\n  const dir = Input.get_axis('left', 'right')\n  this.velocity.x = dir * this.speed\n  if (dir !== 0) {\n    this.facing = dir\n    const sprite = this.get_node('Aspecto')\n    if (sprite) sprite.props.flipX = dir < 0\n  }\n\n  if (this.on_floor) this.coyote = 0.11\n  else this.coyote = Math.max(0, this.coyote - dt)\n\n  if (Input.is_action_just_pressed('jump')) this.buffer = 0.13\n  else this.buffer = Math.max(0, this.buffer - dt)\n\n  this.velocity.y += this.gravity * dt\n  if (this.buffer > 0 && this.coyote > 0) {\n    this.velocity.y = -this.jump_force\n    this.buffer = 0\n    this.coyote = 0\n    this.play_sound('jump')\n  }\n\n  this.move_and_slide(dt)\n\n  if (this.invuln > 0) {\n    this.invuln -= dt\n    const sprite = this.get_node('Aspecto')\n    if (sprite) sprite.visible = Math.floor(this.invuln * 18) % 2 === 0\n  } else {\n    const sprite = this.get_node('Aspecto')\n    if (sprite) sprite.visible = true\n  }\n\n  if (this.y > 430) this.hurt()\n}\n\nhurt() {\n  if (this.invuln > 0) return\n  this.invuln = 1.35\n  this.play_sound('hit')\n  this.shake(10, 0.32)\n  Game.lives = Math.max(0, Game.lives - 1)\n  if (Game.lives <= 0) {\n    Game.game_over(false, 'Las sombras del bosque te atraparon')\n    return\n  }\n  this.x = -380\n  this.y = 120\n  this.velocity.x = 0\n  this.velocity.y = 0\n}",
+            "children": [
+              {
+                "id": "node_4d53450521",
+                "name": "Aspecto",
+                "type": "Sprite2D",
+                "x": 0,
+                "y": -4,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "assetId": "hero",
+                  "width": 62,
+                  "height": 62,
+                  "tint": "#ffffff",
+                  "opacity": 1,
+                  "flipX": false,
+                  "flipY": false,
+                  "glow": 0,
+                  "shadow": true
+                },
+                "children": []
+              },
+              {
+                "id": "node_471ee19c45",
+                "name": "Aura",
+                "type": "Particles2D",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "color": "#86efac",
+                  "amount": 5,
+                  "size": 2,
+                  "lifetime": 0.5,
+                  "speed": 24,
+                  "spread": 130,
+                  "gravity": -25,
+                  "emitting": true
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "node_92e784764b",
+            "name": "Chispa 1",
+            "type": "Area2D",
+            "x": -520,
+            "y": 80,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 0,
+            "props": {
+              "width": 34,
+              "height": 34,
+              "group": "coin",
+              "debug": false
+            },
+            "script": "_ready() {\n  this.taken = false\n}\n\n_physics_process() {\n  if (this.taken) return\n  if (this.overlaps('player').length > 0) {\n    this.taken = true\n    Game.add_score(10)\n    this.play_sound('coin')\n    Game.emit('coin')\n    this.queue_free()\n  }\n}",
+            "children": [
+              {
+                "id": "node_cd7be2617f",
+                "name": "Moneda",
+                "type": "Sprite2D",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "assetId": "coin",
+                  "width": 30,
+                  "height": 30,
+                  "tint": "#ffffff",
+                  "opacity": 1,
+                  "flipX": false,
+                  "flipY": false,
+                  "glow": 14,
+                  "glowColor": "#facc15",
+                  "shadow": false
+                },
+                "children": []
+              },
+              {
+                "id": "node_247dbd458e",
+                "name": "Brillo",
+                "type": "Particles2D",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "color": "#fde68a",
+                  "amount": 8,
+                  "size": 2.5,
+                  "lifetime": 0.7,
+                  "speed": 34,
+                  "spread": 360,
+                  "gravity": -10,
+                  "emitting": true
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "node_810048d25a",
+            "name": "Chispa 2",
+            "type": "Area2D",
+            "x": -265,
+            "y": 120,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 0,
+            "props": {
+              "width": 34,
+              "height": 34,
+              "group": "coin",
+              "debug": false
+            },
+            "script": "_ready() {\n  this.taken = false\n}\n\n_physics_process() {\n  if (this.taken) return\n  if (this.overlaps('player').length > 0) {\n    this.taken = true\n    Game.add_score(10)\n    this.play_sound('coin')\n    Game.emit('coin')\n    this.queue_free()\n  }\n}",
+            "children": [
+              {
+                "id": "node_4805c94cb8",
+                "name": "Moneda",
+                "type": "Sprite2D",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "assetId": "coin",
+                  "width": 30,
+                  "height": 30,
+                  "tint": "#ffffff",
+                  "opacity": 1,
+                  "flipX": false,
+                  "flipY": false,
+                  "glow": 14,
+                  "glowColor": "#facc15",
+                  "shadow": false
+                },
+                "children": []
+              },
+              {
+                "id": "node_6cb75d7d11",
+                "name": "Brillo",
+                "type": "Particles2D",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "color": "#fde68a",
+                  "amount": 8,
+                  "size": 2.5,
+                  "lifetime": 0.7,
+                  "speed": 34,
+                  "spread": 360,
+                  "gravity": -10,
+                  "emitting": true
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "node_86c9a40efb",
+            "name": "Chispa 3",
+            "type": "Area2D",
+            "x": -160,
+            "y": 120,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 0,
+            "props": {
+              "width": 34,
+              "height": 34,
+              "group": "coin",
+              "debug": false
+            },
+            "script": "_ready() {\n  this.taken = false\n}\n\n_physics_process() {\n  if (this.taken) return\n  if (this.overlaps('player').length > 0) {\n    this.taken = true\n    Game.add_score(10)\n    this.play_sound('coin')\n    Game.emit('coin')\n    this.queue_free()\n  }\n}",
+            "children": [
+              {
+                "id": "node_fffdb4e115",
+                "name": "Moneda",
+                "type": "Sprite2D",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "assetId": "coin",
+                  "width": 30,
+                  "height": 30,
+                  "tint": "#ffffff",
+                  "opacity": 1,
+                  "flipX": false,
+                  "flipY": false,
+                  "glow": 14,
+                  "glowColor": "#facc15",
+                  "shadow": false
+                },
+                "children": []
+              },
+              {
+                "id": "node_05e1efe171",
+                "name": "Brillo",
+                "type": "Particles2D",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "color": "#fde68a",
+                  "amount": 8,
+                  "size": 2.5,
+                  "lifetime": 0.7,
+                  "speed": 34,
+                  "spread": 360,
+                  "gravity": -10,
+                  "emitting": true
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "node_8c618f753a",
+            "name": "Chispa 4",
+            "type": "Area2D",
+            "x": 40,
+            "y": 35,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 0,
+            "props": {
+              "width": 34,
+              "height": 34,
+              "group": "coin",
+              "debug": false
+            },
+            "script": "_ready() {\n  this.taken = false\n}\n\n_physics_process() {\n  if (this.taken) return\n  if (this.overlaps('player').length > 0) {\n    this.taken = true\n    Game.add_score(10)\n    this.play_sound('coin')\n    Game.emit('coin')\n    this.queue_free()\n  }\n}",
+            "children": [
+              {
+                "id": "node_100598892c",
+                "name": "Moneda",
+                "type": "Sprite2D",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "assetId": "coin",
+                  "width": 30,
+                  "height": 30,
+                  "tint": "#ffffff",
+                  "opacity": 1,
+                  "flipX": false,
+                  "flipY": false,
+                  "glow": 14,
+                  "glowColor": "#facc15",
+                  "shadow": false
+                },
+                "children": []
+              },
+              {
+                "id": "node_82b61c3ad2",
+                "name": "Brillo",
+                "type": "Particles2D",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "color": "#fde68a",
+                  "amount": 8,
+                  "size": 2.5,
+                  "lifetime": 0.7,
+                  "speed": 34,
+                  "spread": 360,
+                  "gravity": -10,
+                  "emitting": true
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "node_62153f392c",
+            "name": "Chispa 5",
+            "type": "Area2D",
+            "x": 360,
+            "y": 100,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 0,
+            "props": {
+              "width": 34,
+              "height": 34,
+              "group": "coin",
+              "debug": false
+            },
+            "script": "_ready() {\n  this.taken = false\n}\n\n_physics_process() {\n  if (this.taken) return\n  if (this.overlaps('player').length > 0) {\n    this.taken = true\n    Game.add_score(10)\n    this.play_sound('coin')\n    Game.emit('coin')\n    this.queue_free()\n  }\n}",
+            "children": [
+              {
+                "id": "node_5704090ddb",
+                "name": "Moneda",
+                "type": "Sprite2D",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "assetId": "coin",
+                  "width": 30,
+                  "height": 30,
+                  "tint": "#ffffff",
+                  "opacity": 1,
+                  "flipX": false,
+                  "flipY": false,
+                  "glow": 14,
+                  "glowColor": "#facc15",
+                  "shadow": false
+                },
+                "children": []
+              },
+              {
+                "id": "node_2cf766145e",
+                "name": "Brillo",
+                "type": "Particles2D",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "color": "#fde68a",
+                  "amount": 8,
+                  "size": 2.5,
+                  "lifetime": 0.7,
+                  "speed": 34,
+                  "spread": 360,
+                  "gravity": -10,
+                  "emitting": true
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "node_0797854330",
+            "name": "Chispa 6",
+            "type": "Area2D",
+            "x": 570,
+            "y": -10,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 0,
+            "props": {
+              "width": 34,
+              "height": 34,
+              "group": "coin",
+              "debug": false
+            },
+            "script": "_ready() {\n  this.taken = false\n}\n\n_physics_process() {\n  if (this.taken) return\n  if (this.overlaps('player').length > 0) {\n    this.taken = true\n    Game.add_score(10)\n    this.play_sound('coin')\n    Game.emit('coin')\n    this.queue_free()\n  }\n}",
+            "children": [
+              {
+                "id": "node_01ba91b1f5",
+                "name": "Moneda",
+                "type": "Sprite2D",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "assetId": "coin",
+                  "width": 30,
+                  "height": 30,
+                  "tint": "#ffffff",
+                  "opacity": 1,
+                  "flipX": false,
+                  "flipY": false,
+                  "glow": 14,
+                  "glowColor": "#facc15",
+                  "shadow": false
+                },
+                "children": []
+              },
+              {
+                "id": "node_47ecddcebc",
+                "name": "Brillo",
+                "type": "Particles2D",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "color": "#fde68a",
+                  "amount": 8,
+                  "size": 2.5,
+                  "lifetime": 0.7,
+                  "speed": 34,
+                  "spread": 360,
+                  "gravity": -10,
+                  "emitting": true
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "node_709f819042",
+            "name": "Chispa 7",
+            "type": "Area2D",
+            "x": 660,
+            "y": 205,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 0,
+            "props": {
+              "width": 34,
+              "height": 34,
+              "group": "coin",
+              "debug": false
+            },
+            "script": "_ready() {\n  this.taken = false\n}\n\n_physics_process() {\n  if (this.taken) return\n  if (this.overlaps('player').length > 0) {\n    this.taken = true\n    Game.add_score(10)\n    this.play_sound('coin')\n    Game.emit('coin')\n    this.queue_free()\n  }\n}",
+            "children": [
+              {
+                "id": "node_4e36957bdd",
+                "name": "Moneda",
+                "type": "Sprite2D",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "assetId": "coin",
+                  "width": 30,
+                  "height": 30,
+                  "tint": "#ffffff",
+                  "opacity": 1,
+                  "flipX": false,
+                  "flipY": false,
+                  "glow": 14,
+                  "glowColor": "#facc15",
+                  "shadow": false
+                },
+                "children": []
+              },
+              {
+                "id": "node_a0a2ac0c16",
+                "name": "Brillo",
+                "type": "Particles2D",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "color": "#fde68a",
+                  "amount": 8,
+                  "size": 2.5,
+                  "lifetime": 0.7,
+                  "speed": 34,
+                  "spread": 360,
+                  "gravity": -10,
+                  "emitting": true
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "node_d369c4c8ae",
+            "name": "Chispa 8",
+            "type": "Area2D",
+            "x": -690,
+            "y": 205,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 0,
+            "props": {
+              "width": 34,
+              "height": 34,
+              "group": "coin",
+              "debug": false
+            },
+            "script": "_ready() {\n  this.taken = false\n}\n\n_physics_process() {\n  if (this.taken) return\n  if (this.overlaps('player').length > 0) {\n    this.taken = true\n    Game.add_score(10)\n    this.play_sound('coin')\n    Game.emit('coin')\n    this.queue_free()\n  }\n}",
+            "children": [
+              {
+                "id": "node_c023242781",
+                "name": "Moneda",
+                "type": "Sprite2D",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "assetId": "coin",
+                  "width": 30,
+                  "height": 30,
+                  "tint": "#ffffff",
+                  "opacity": 1,
+                  "flipX": false,
+                  "flipY": false,
+                  "glow": 14,
+                  "glowColor": "#facc15",
+                  "shadow": false
+                },
+                "children": []
+              },
+              {
+                "id": "node_9f7a72c521",
+                "name": "Brillo",
+                "type": "Particles2D",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "color": "#fde68a",
+                  "amount": 8,
+                  "size": 2.5,
+                  "lifetime": 0.7,
+                  "speed": 34,
+                  "spread": 360,
+                  "gravity": -10,
+                  "emitting": true
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "node_a3726ad180",
+            "name": "Slime patrulla",
+            "type": "Area2D",
+            "x": -90,
+            "y": 205,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 0,
+            "props": {
+              "width": 54,
+              "height": 42,
+              "group": "enemy",
+              "debug": false
+            },
+            "script": "_ready() {\n  this.dir = 1\n  this.speed = 58\n  this.min_x = this.x - 95\n  this.max_x = this.x + 95\n}\n\n_physics_process(dt) {\n  this.x += this.dir * this.speed * dt\n  if (this.x < this.min_x || this.x > this.max_x) this.dir *= -1\n  const sprite = this.get_node('Slime')\n  if (sprite) sprite.props.flipX = this.dir < 0\n  if (this.overlaps('player').length > 0) Game.emit('damage')\n}",
+            "children": [
+              {
+                "id": "node_312ad9b5b9",
+                "name": "Slime",
+                "type": "Sprite2D",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "assetId": "slime",
+                  "width": 44,
+                  "height": 44,
+                  "tint": "#ffffff",
+                  "opacity": 1,
+                  "flipX": false,
+                  "flipY": false,
+                  "glow": 0,
+                  "shadow": true
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "node_64419d6ff2",
+            "name": "Slime curioso",
+            "type": "Area2D",
+            "x": 280,
+            "y": 205,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 0,
+            "props": {
+              "width": 54,
+              "height": 42,
+              "group": "enemy",
+              "debug": false
+            },
+            "script": "_ready() {\n  this.dir = 1\n  this.speed = 58\n  this.min_x = this.x - 95\n  this.max_x = this.x + 95\n}\n\n_physics_process(dt) {\n  this.x += this.dir * this.speed * dt\n  if (this.x < this.min_x || this.x > this.max_x) this.dir *= -1\n  const sprite = this.get_node('Slime')\n  if (sprite) sprite.props.flipX = this.dir < 0\n  if (this.overlaps('player').length > 0) Game.emit('damage')\n}",
+            "children": [
+              {
+                "id": "node_d543bfb1ce",
+                "name": "Slime",
+                "type": "Sprite2D",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "assetId": "slime",
+                  "width": 40,
+                  "height": 40,
+                  "tint": "#ffffff",
+                  "opacity": 1,
+                  "flipX": false,
+                  "flipY": false,
+                  "glow": 0,
+                  "shadow": true
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "node_bf3cc0d882",
+            "name": "Pinchos visuales",
+            "type": "StaticBody2D",
+            "x": 465,
+            "y": 240,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 0,
+            "props": {
+              "width": 96,
+              "height": 20,
+              "color": "#32221c",
+              "edgeColor": "#fb7185",
+              "oneWay": false,
+              "style": "spikes"
+            },
+            "children": []
+          },
+          {
+            "id": "node_4bc15f1955",
+            "name": "Pinchos",
+            "type": "Area2D",
+            "x": 465,
+            "y": 220,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 0,
+            "props": {
+              "width": 88,
+              "height": 34,
+              "group": "hazard",
+              "debug": false
+            },
+            "script": "_physics_process() {\n  if (this.overlaps('player').length > 0) Game.emit('damage')\n}",
+            "children": []
+          },
+          {
+            "id": "node_d66ea37d5d",
+            "name": "Meta",
+            "type": "Area2D",
+            "x": 655,
+            "y": 185,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 4,
+            "props": {
+              "width": 50,
+              "height": 90,
+              "group": "goal",
+              "debug": false
+            },
+            "script": "_physics_process() {\n  if (this.overlaps('player').length > 0) {\n    this.play_sound('win')\n    Game.win('¡Has encontrado la chispa dorada!')\n  }\n}",
+            "children": [
+              {
+                "id": "node_f3f13d0075",
+                "name": "Bandera",
+                "type": "Sprite2D",
+                "x": 0,
+                "y": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 0,
+                "props": {
+                  "assetId": "flag",
+                  "width": 68,
+                  "height": 68,
+                  "tint": "#ffffff",
+                  "opacity": 1,
+                  "flipX": false,
+                  "flipY": false,
+                  "glow": 18,
+                  "glowColor": "#facc15",
+                  "shadow": true
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "node_17c534e885",
+            "name": "Interfaz",
+            "type": "CanvasLayer",
+            "x": 0,
+            "y": 0,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "visible": true,
+            "zIndex": 0,
+            "props": {},
+            "children": [
+              {
+                "id": "node_39a2a714da",
+                "name": "Puntos",
+                "type": "Label2D",
+                "x": 130,
+                "y": 32,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 10,
+                "props": {
+                  "text": "Texto",
+                  "bind": "score",
+                  "prefix": "CHISPAS  ",
+                  "suffix": "",
+                  "width": 220,
+                  "height": 30,
+                  "fontSize": 19,
+                  "color": "#facc15",
+                  "fontWeight": 700,
+                  "align": "left",
+                  "shadow": true
+                },
+                "children": []
+              },
+              {
+                "id": "node_f90d3ea5c4",
+                "name": "Vidas",
+                "type": "Label2D",
+                "x": 104,
+                "y": 60,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 10,
+                "props": {
+                  "text": "Texto",
+                  "bind": "lives",
+                  "prefix": "VIDAS  ",
+                  "suffix": "",
+                  "width": 168,
+                  "height": 28,
+                  "fontSize": 17,
+                  "color": "#fb7185",
+                  "fontWeight": 700,
+                  "align": "left",
+                  "shadow": true
+                },
+                "children": []
+              },
+              {
+                "id": "node_cc7565863d",
+                "name": "Titulo",
+                "type": "Label2D",
+                "x": 780,
+                "y": 32,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 10,
+                "props": {
+                  "text": "BOSQUE DE CHISPAS",
+                  "bind": "",
+                  "prefix": "",
+                  "suffix": "",
+                  "width": 320,
+                  "height": 28,
+                  "fontSize": 14,
+                  "color": "#7dd3fc",
+                  "fontWeight": 700,
+                  "align": "right",
+                  "shadow": true
+                },
+                "children": []
+              },
+              {
+                "id": "node_0004b43643",
+                "name": "Ayuda",
+                "type": "Label2D",
+                "x": 480,
+                "y": 512,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1,
+                "visible": true,
+                "zIndex": 10,
+                "props": {
+                  "text": "← → / A D para mover   ·   ESPACIO para saltar   ·   R para reiniciar",
+                  "bind": "",
+                  "prefix": "",
+                  "suffix": "",
+                  "width": 620,
+                  "height": 26,
+                  "fontSize": 13,
+                  "color": "#94a3b8",
+                  "fontWeight": 700,
+                  "align": "center",
+                  "shadow": false
+                },
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "mainSceneId": "scene_5ed5e55844",
+  "createdAt": "2026-11-17T18:51:30.774Z",
+  "updatedAt": "2026-11-17T18:51:30.774Z"
+}

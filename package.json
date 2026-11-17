@@ -1,0 +1,75 @@
+{
+  "name": "axiom-engine",
+  "version": "0.1.0",
+  "description": "Axiom Engine - motor de videojuegos 2D con IA integrada",
+  "main": "./out/main/index.js",
+  "author": "Axiom Engine",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "build": {
+    "appId": "com.axiom.engine",
+    "productName": "Axiom Engine",
+    "copyright": "Copyright © 2026 Axiom Engine",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "out/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "build/icon.png",
+        "to": "icon.png"
+      }
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        {
+          "target": "zip",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "artifactName": "Axiom-Engine-${version}-${arch}.${ext}"
+    }
+  },
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "start": "electron-vite preview",
+    "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.web.json",
+    "test": "vitest run --pool=threads",
+    "test:watch": "vitest --pool=threads",
+    "dist": "electron-vite build && electron-builder --win",
+    "dist:dir": "electron-vite build && electron-builder --win dir"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@codemirror/lang-javascript": "^6.2.4",
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@uiw/react-codemirror": "^4.25.12",
+    "@vitejs/plugin-react": "^6.3.0",
+    "electron": "^45.3.3",
+    "electron-builder": "^26.18.0",
+    "electron-vite": "^6.0.0",
+    "lucide-react": "^0.474.0",
+    "playwright-core": "^1.65.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0",
+    "zustand": "^5.0.1"
+  }
+}

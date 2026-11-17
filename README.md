@@ -1,0 +1,252 @@
+<p align="center">
+  <img src="build/icon.png" width="96" alt="Axiom Engine" />
+</p>
+
+<h1 align="center">AXIOM ENGINE</h1>
+
+<p align="center">
+  Un motor de videojuegos 2D para crear conversando con IA.<br />
+  Editor visual, runtime jugable y Copiloto DeepSeek en una sola aplicación de escritorio.
+</p>
+
+<p align="center">
+  <img alt="Estado" src="https://img.shields.io/badge/estado-alfa%200.1.0-f59e0b" />
+  <img alt="Plataforma" src="https://img.shields.io/badge/plataforma-Windows%2010%2F11-38bdf8" />
+  <img alt="Licencia" src="https://img.shields.io/badge/licencia-MIT-34d399" />
+</p>
+
+![Editor de Axiom Engine](docs/screenshots/editor.png)
+
+> **Axiom Engine** está inspirado en la filosofía de editores como Godot: árbol de escena, inspector, viewport y scripts. Su diferencia es que el **Copiloto IA** vive dentro del editor y conoce el proyecto: puede crear niveles completos, añadir mecánicas, escribir scripts, generar assets y corregir lo que ya existe.
+
+---
+
+## Lo que ya funciona
+
+| Área | Capacidades |
+| --- | --- |
+| Editor | Árbol de escena con arrastrar y soltar, inspector, viewport con zoom/pan, cuadrícula, snapping, geometría de colisión, deshacer/rehacer |
+| Runtime 2D | Escenas, cámara con seguimiento y suavizado, física AABB, plataformas, áreas de detección, partículas, HUD, pausa, victoria/derrota y reinicio |
+| Scripts | Comportamientos en JavaScript con API estilo Godot: `_ready`, `_process`, `_physics_process`, `move_and_slide`, señales, plantillas y proyectiles |
+| Assets | Biblioteca de emojis, formas vectoriales, monedas dibujadas por código, importación de imágenes y assets creados por IA |
+| IA | Chat con DeepSeek, streaming en tiempo real, contexto del proyecto, modo agente, aplicación de cambios con historial y deshacer |
+| Proyecto | Guardar/abrir `.axiom`, autoguardado local, múltiples escenas, escena principal y exportación portable |
+| Distribución | Build de Windows en ZIP, icono propio y aplicación empaquetada con Electron |
+
+### Capturas
+
+| Gameplay | Copiloto en acción |
+| --- | --- |
+| ![Gameplay](docs/screenshots/game.png) | ![Copiloto](docs/screenshots/copilot.png) |
+
+| Bienvenida del Copiloto | Shooter de ejemplo |
+| --- | --- |
+| ![Bienvenida](docs/screenshots/welcome.png) | ![Shooter](docs/screenshots/shooter.png) |
+
+| Plantillas | Conexión de IA |
+| --- | --- |
+| ![Plantillas](docs/screenshots/templates.png) | ![Ajustes de IA](docs/screenshots/settings.png) |
+
+---
+
+## Inicio rápido
+
+### Opción A — Aplicación empaquetada (Windows)
+
+1. Descomprime `release/Axiom-Engine-0.1.0-x64.zip` (o descarga el ZIP de la release cuando esté publicada).
+2. Ejecuta `Axiom Engine.exe`.
+3. Abre **Copiloto → Conectar** y pega una clave API de [DeepSeek](https://platform.deepseek.com/api_keys).
+4. Escribe lo que quieres crear y pulsa **Enter**.
+
+> La aplicación no está firmada digitalmente en esta etapa alfa. Windows SmartScreen puede pedir confirmación la primera vez.
+
+### Opción B — Desarrollo
+
+Requisitos: **Node.js 20 o superior** (probado con Node 24) y **Windows 10/11**.
+
+```bash
+npm install
+npm run dev
+```
+
+Si la descarga de Electron falla por restricciones de red, define una caché local:
+
+```powershell
+$env:ELECTRON_CACHE="$PWD\.cache\electron"
+npm install
+```
+
+### Comandos
+
+```bash
+npm run dev        # editor en modo desarrollo
+npm run build      # compila main, preload y renderer
+npm start          # previsualiza la build
+npm run typecheck  # TypeScript estricto
+npm test           # tests del motor y del parser IA
+npm run dist       # genera el ZIP de Windows en release/
+npm run dist:dir   # genera release/win-unpacked sin comprimir
+```
+
+---
+
+## Crea tu primer juego con IA
+
+1. Elige una plantilla en **Archivo → Nuevo proyecto** o parte de la escena actual.
+2. Conecta DeepSeek en **Ajustes de IA** (icono de engranaje).
+3. En el Copiloto escribe, por ejemplo:
+   - *“Crea un plataformas con doble salto, monedas y un jefe final que dispare.”*
+   - *“Convierte este nivel en un templo subterráneo con antorchas y un portal.”*
+   - *“Añade una barra de vida al jugador y un ataque cuerpo a cuerpo con la tecla E.”*
+4. Mantén **Agente** activo para que los cambios se apliquen automáticamente. Si lo desactivas, revisarás cada propuesta antes de aplicarla.
+5. Pulsa **Jugar** (o `F5`) para probar. `Shift+F5` detiene la partida.
+6. Guarda con `Ctrl+S` y comparte el archivo `.axiom`.
+
+### Ejemplos incluidos
+
+En [`examples/`](examples/) hay tres proyectos listos para abrir:
+
+- [`bosque-de-chispas.axiom`](examples/bosque-de-chispas.axiom)
+- [`cazador-estelar.axiom`](examples/cazador-estelar.axiom)
+- [`proyecto-vacio.axiom`](examples/proyecto-vacio.axiom)
+
+### Proveedores compatibles
+
+Axiom usa la API de Chat Completions compatible con OpenAI. Puedes usar:
+
+- **DeepSeek** (recomendado): `https://api.deepseek.com/v1` + `deepseek-chat` o `deepseek-reasoner`.
+- **OpenAI**, **OpenRouter** o cualquier endpoint compatible.
+- **Ollama** local: `http://localhost:11434/v1` + el modelo que tengas instalado (no requiere clave).
+- También se puede usar una clave de las variables de entorno `DEEPSEEK_API_KEY` u `OPENAI_API_KEY`.
+
+La clave se guarda cifrada con el almacén seguro del sistema (`safeStorage`) y **nunca se envía al renderer**. Las peticiones salen del proceso principal de Electron directamente al proveedor elegido. No hay telemetría.
+
+---
+
+## Controles del editor
+
+| Acción | Atajo |
+| --- | --- |
+| Guardar / Guardar como | `Ctrl+S` / `Ctrl+Shift+S` |
+| Abrir / Nuevo proyecto | `Ctrl+O` / `Ctrl+N` |
+| Deshacer / Rehacer | `Ctrl+Z` / `Ctrl+Y` |
+| Duplicar / Eliminar nodo | `Ctrl+D` / `Supr` |
+| Reproducir / Detener | `F5` / `Shift+F5` |
+| Cuadrícula / Colisiones | `G` / `C` |
+| Mover vista | Espacio + arrastrar, o botón central |
+| Zoom | Rueda del ratón |
+| Renombrar nodo | Doble clic en el árbol |
+| Editar script | Doble clic en el nodo del viewport o botón “Editar script” |
+
+Controles de juego por defecto: flechas/WASD, `Espacio` para saltar, `J` para disparar, `Esc` para pausar y `R` para reiniciar. Los scripts pueden consultar o ampliar estas acciones con `Input`.
+
+---
+
+## Cómo funciona
+
+```text
+src/main/          Proceso principal de Electron: ventana, API de IA, claves, archivos
+src/preload/       Puente seguro y tipado entre Electron y la interfaz
+src/renderer/      Editor React + runtime del juego + Copiloto
+  engine/          Modelo de proyecto, renderer 2D, físico, scripts, acciones IA
+  store/           Estado del editor, chat y ajustes
+  components/      Árbol, viewport, inspector, assets, Copiloto y modales
+  templates.ts     Juegos de ejemplo jugables
+tests/             Tests de acciones, parser, plantillas y scripts
+docs/              Documentación técnica y capturas
+```
+
+El Copiloto recibe un resumen estructurado del proyecto (escena, árbol, props y scripts) y responde con una explicación más un bloque `<acciones>` en JSON. El renderer valida y aplica esas acciones de forma transaccional, con historial para deshacer. El motor no depende de React: el runtime se puede ejecutar sobre un canvas independiente.
+
+Más detalles:
+
+- [Arquitectura](docs/ARCHITECTURE.md)
+- [API de scripting](docs/SCRIPTING.md)
+- [Protocolo del agente IA](docs/AI_AGENT.md)
+
+---
+
+## Scripting
+
+Los scripts son clases implícitas: solo escribes métodos. Ejemplo de jugador:
+
+```js
+_ready() {
+  this.speed = 300
+  this.jump = 720
+}
+
+_physics_process(dt) {
+  const dir = Input.get_axis("left", "right")
+  this.velocity.x = dir * this.speed
+  this.velocity.y += this.gravity * dt
+
+  if (Input.is_action_just_pressed("jump") && this.on_floor) {
+    this.velocity.y = -this.jump
+    this.play_sound("jump")
+  }
+
+  this.move_and_slide(dt)
+}
+```
+
+El runtime expone `Game`, `Input`, `print`, `rand`, `clamp`, `lerp`, `dist`, `Vector2`, sonidos sintetizados y una API de nodo (`get_node`, `spawn`, `overlaps`, `queue_free`, `shake`). Consulta la [referencia completa](docs/SCRIPTING.md).
+
+---
+
+## Estado del proyecto
+
+Axiom 0.1.0 es una **alfa funcional**. Es un motor real y jugable, pero no pretende sustituir todavía a Godot en proyectos grandes.
+
+### Incluido
+
+- Editor visual 2D completo para el flujo asistido por IA.
+- Dos juegos de ejemplo jugables y una plantilla vacía.
+- Física, cámara, HUD, partículas, sonido sintetizado y scripts.
+- IA con contexto, streaming, agente y deshacer.
+- Empaquetado Windows y aplicación portable.
+
+### Próximos pasos
+
+- Exportación de juegos a HTML/Web y ejecutable independiente.
+- Modo 3D básico.
+- Editor de animaciones y tilemaps.
+- Depurador visual, breakpoints y perfilador.
+- Publicación en GitHub tras la aprobación del proyecto.
+
+### Limitaciones conocidas
+
+- Solo 2D; la pestaña 3D está marcada como “pronto”.
+- No hay editor de audio ni importación de música.
+- Los scripts se ejecutan localmente con el runtime del editor; están pensados para proyectos propios.
+- El instalador NSIS no forma parte de esta entrega; se distribuye un ZIP portable.
+- El instalador de Windows no está firmado.
+
+---
+
+## Tests y calidad
+
+```bash
+npm run typecheck
+npm test
+```
+
+La suite actual cubre:
+
+- Serialización, normalización y migración de proyectos.
+- Creación y modificación de nodos mediante el protocolo de acciones.
+- Validación y ejecución de scripts.
+- Extracción del bloque de acciones del Copiloto.
+- Compilación de todos los scripts de las plantillas.
+
+También existe una prueba end-to-end con Electron y un proveedor de IA simulado en `scripts/e2e.mjs`. Se ejecuta manualmente porque necesita abrir una ventana de Electron:
+
+```bash
+node scripts/e2e.mjs
+```
+
+---
+
+## Licencia
+
+MIT. Consulta [LICENSE](LICENSE).
